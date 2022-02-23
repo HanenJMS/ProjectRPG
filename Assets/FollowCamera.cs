@@ -11,6 +11,7 @@ public class FollowCamera : MonoBehaviour
         {
             FollowTarget();
         }
+        this.transform.position = target.transform.position;
     }
 
     private void FollowTarget()
@@ -26,7 +27,7 @@ public class FollowCamera : MonoBehaviour
                 target = hit.transform.gameObject;
             }
         }
-        this.transform.position = target.transform.position;
+        
         Debug.DrawRay(lastRay.origin, lastRay.direction * 100);
     }
 }

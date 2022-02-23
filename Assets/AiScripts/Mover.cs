@@ -9,11 +9,13 @@ public class Mover : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] GameObject target;
     NavMeshAgent agent;
+    Animator animator;
 
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -23,7 +25,7 @@ public class Mover : MonoBehaviour
         {
             MoveToCursor();
         }
-        
+        UpdateAnimator();
     }
 
     private void MoveToCursor()
@@ -37,5 +39,13 @@ public class Mover : MonoBehaviour
             agent.SetDestination(hit.point);
         }
         Debug.DrawRay(lastRay.origin, lastRay.direction * 100);
+    }
+
+    private void UpdateAnimator()
+    {
+        Vector3 velocity = agent.velocity;
+        Vector3 localVelocity = transform.InverseTransformDirection(velocity);
+        float speed = localVelocity.z;
+        animator.SetFloat("forwardSpeed", speed);
     }
 }
