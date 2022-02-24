@@ -1,51 +1,55 @@
+using RPG.Combat;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
 
-public class Mover : MonoBehaviour
+namespace RPG.Movement
 {
-    // Start is called before the first frame update
-    [SerializeField] GameObject target;
-    NavMeshAgent agent;
-    Animator animator;
-
-
-    void Start()
+    public class Mover : MonoBehaviour
     {
-        agent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();
-    }
+        // Start is called before the first frame update
+        [SerializeField] GameObject target;
+        NavMeshAgent agent;
+        Animator animator;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetMouseButton(1))
+
+        void Start()
         {
-            MoveToCursor();
+            agent = GetComponent<NavMeshAgent>();
+            animator = GetComponent<Animator>();
         }
-        UpdateAnimator();
-    }
 
-    private void MoveToCursor()
-    {
-        Ray lastRay;
-        RaycastHit hit;
-        lastRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        bool hasHit = Physics.Raycast(lastRay, out hit);
-        if(hasHit)
+        // Update is called once per frame
+        void Update()
         {
-            agent.SetDestination(hit.point);
-        }
-        Debug.DrawRay(lastRay.origin, lastRay.direction * 100);
-    }
 
-    private void UpdateAnimator()
-    {
-        Vector3 velocity = agent.velocity;
-        Vector3 localVelocity = transform.InverseTransformDirection(velocity);
-        float speed = localVelocity.z;
-        animator.SetFloat("forwardSpeed", speed);
+            UpdateAnimator();
+        }
+
+
+        public void StartMoveAction(Vector3 destination)
+        {
+            GetComponent<Fighter>().Cancel();
+            MoveTo(destination);
+        }
+        public void MoveTo(Vector3 destination)
+        {
+            agent.SetDestination(destination);
+            agent.isStopped = false;
+        }
+        public void Stop()
+        {
+            agent.isStopped = true;
+        }
+
+        private void UpdateAnimator()
+        {
+            Vector3 velocity = agent.velocity;
+            Vector3 localVelocity = transform.InverseTransformDirection(velocity);
+            float speed = localVelocity.z;
+            animator.SetFloat("forwardSpeed", speed);
+        }
     }
 }

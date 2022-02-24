@@ -2,32 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowCamera : MonoBehaviour
+namespace RPG.Core
 {
-    [SerializeField] private GameObject target;
-    void LateUpdate()
+    public class FollowCamera : MonoBehaviour
     {
-        if (Input.GetMouseButtonDown(0))
+        [SerializeField] private GameObject target;
+        [SerializeField] private float mouseScroll = 5f;
+        void LateUpdate()
         {
-            FollowTarget();
-        }
-        this.transform.position = target.transform.position;
-    }
-
-    private void FollowTarget()
-    {
-        Ray lastRay;
-        RaycastHit hit;
-        lastRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        bool hasHit = Physics.Raycast(lastRay, out hit);
-        if (hasHit)
-        {
-            if (hit.transform.tag == "unit")
+            //if (Input.GetMouseButtonDown(0))
+            //{
+            //    SelectTarget();
+            //}
+            this.transform.position = target.transform.position;
+            if (Input.mouseScrollDelta.y != 0)
             {
-                target = hit.transform.gameObject;
+                Camera.main.fieldOfView -= (Input.mouseScrollDelta.y);
             }
         }
-        
-        Debug.DrawRay(lastRay.origin, lastRay.direction * 100);
+
+        private void SelectTarget()
+        {
+            Ray lastRay;
+            RaycastHit hit;
+            lastRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            bool hasHit = Physics.Raycast(lastRay, out hit);
+            if (hasHit)
+            {
+                if (hit.transform.tag == "unit")
+                {
+                    target = hit.transform.gameObject;
+                }
+            }
+
+            Debug.DrawRay(lastRay.origin, lastRay.direction * 100);
+        }
     }
 }
