@@ -1,4 +1,4 @@
-using RPG.Combat;
+using RPG.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,9 +7,8 @@ using UnityEngine.UIElements;
 
 namespace RPG.Movement
 {
-    public class Mover : MonoBehaviour
+    public class Mover : MonoBehaviour, IAction
     {
-        // Start is called before the first frame update
         [SerializeField] GameObject target;
         NavMeshAgent agent;
         Animator animator;
@@ -31,7 +30,7 @@ namespace RPG.Movement
 
         public void StartMoveAction(Vector3 destination)
         {
-            GetComponent<Fighter>().Cancel();
+            GetComponent<ActionScheduler>().StartAction(this);
             MoveTo(destination);
         }
         public void MoveTo(Vector3 destination)
@@ -39,7 +38,7 @@ namespace RPG.Movement
             agent.SetDestination(destination);
             agent.isStopped = false;
         }
-        public void Stop()
+        public void Cancel()
         {
             agent.isStopped = true;
         }
