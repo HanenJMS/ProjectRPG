@@ -55,8 +55,8 @@ namespace RPG.Control
                 if (Input.GetMouseButton(1))
                 {
                     this.gameObject.GetComponent<Mover>().StartMoveAction(hit.point);
+                    print("Running to point");
                 }
-                print("Running to point");
                 return true;
             }
             return false;
