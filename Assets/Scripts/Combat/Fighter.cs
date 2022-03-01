@@ -1,5 +1,6 @@
 using RPG.Core;
 using RPG.Movement;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,8 +11,10 @@ namespace RPG.Combat
     {
         [SerializeField] float weaponRange = 2f;
         [SerializeField] float timeBetweenAttacks = 1f;
+        [SerializeField] float weaponDamage = 5f;
         Transform target;
         float timeSinceLastAttack = 0f;
+        
         public void Attack(CombatTarget combatTarget)
         {
             GetComponent<ActionScheduler>().StartAction(this);
@@ -38,6 +41,11 @@ namespace RPG.Combat
             }
         }
 
+        private void DoDamage()
+        {
+            target.GetComponent<Health>().TakeDamage(weaponDamage);
+        }
+
         private void AttackBehavior()
         {
             if(timeSinceLastAttack > timeBetweenAttacks)
@@ -56,8 +64,7 @@ namespace RPG.Combat
         //Animation Event
         void Hit()
         {
-
-            
+            DoDamage();
         }
     }
 }
