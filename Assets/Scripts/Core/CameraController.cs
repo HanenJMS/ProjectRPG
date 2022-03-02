@@ -7,7 +7,7 @@ namespace RPG.Core
 {
     public class CameraController : MonoBehaviour
     {
-        public static CameraController instance;
+        //public static CameraController instance;
         [SerializeField] Transform cameraTransform;
         [SerializeField] Transform followTransform;
 
@@ -31,7 +31,7 @@ namespace RPG.Core
 
         private void Start()
         {
-            instance = this;
+            //instance = this;
             newPosition = transform.position;
             newRotation = transform.rotation;
             newZoom = cameraTransform.localPosition;
