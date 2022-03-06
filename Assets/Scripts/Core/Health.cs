@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.Combat
+namespace RPG.Core
 {
     public class Health : MonoBehaviour
     {
@@ -28,6 +28,7 @@ namespace RPG.Combat
 
             PlayDeathAnimation();
             isDead = !isDead;
+            GetComponent<ActionScheduler>().CancelCurrentAction();
         }
 
         private void PlayDeathAnimation()
