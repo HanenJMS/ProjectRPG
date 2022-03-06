@@ -12,18 +12,19 @@ namespace RPG.Movement
         [SerializeField] GameObject target;
         NavMeshAgent agent;
         Animator animator;
-
+        Health health;
 
         void Start()
         {
-            agent = GetComponent<NavMeshAgent>();
-            animator = GetComponent<Animator>();
+            agent = this.gameObject.GetComponent<NavMeshAgent>();
+            animator = this.gameObject.GetComponent<Animator>();
+            health = this.gameObject.GetComponent<Health>();
         }
 
         // Update is called once per frame
         void Update()
         {
-
+            agent.enabled = !health.IsDead();
             UpdateAnimator();
         }
 

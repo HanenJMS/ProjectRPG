@@ -10,15 +10,19 @@ namespace RPG.Control
     public class AIController : MonoBehaviour
     {
         [SerializeField] float chaseDistance = 3f;
-        Vector3 startingPosition;
+        [SerializeField] float suspicionTime = 5f;
+        Vector3 guardPosition;
         Fighter fighter;
         Health health;
         UnitCore player;
+        Mover mover;
+        float timeSinceLastSawPlayer = Mathf.Infinity;
         private void Start()
         {
-            startingPosition = this.gameObject.transform.position;
+            guardPosition = this.gameObject.transform.position;
             fighter = this.gameObject.GetComponent<Fighter>();
             health = this.gameObject.GetComponent<Health>();
+            mover = this.gameObject.GetComponent<Mover>();
             setPlayer();
         }
         private void Update()
@@ -33,13 +37,35 @@ namespace RPG.Control
         {
             if (IsWithinDistance() && fighter.CanAttack(player.gameObject))
             {
-                fighter.Attack(player.gameObject);
+                timeSinceLastSawPlayer = 0f;
+                AttackBehaviour();
+
+            }
+            else if(!IsWithinDistance() && timeSinceLastSawPlayer <= suspicionTime)
+            {
+                SuspicionBehaviour();
             }
             else
             {
-                fighter.Cancel();
-                GetComponent<Mover>().StartMoveAction(startingPosition);
+                GuardBehaviour();
             }
+            timeSinceLastSawPlayer += Time.deltaTime;
+
+        }
+
+        private void GuardBehaviour()
+        {
+            mover.StartMoveAction(guardPosition);
+        }
+
+        private void SuspicionBehaviour()
+        {
+            GetComponent<ActionScheduler>().CancelCurrentAction();
+        }
+
+        private void AttackBehaviour()
+        {
+            fighter.Attack(player.gameObject);
         }
 
         private bool IsWithinDistance()
@@ -62,6 +88,12 @@ namespace RPG.Control
                     this.player = unitCore;
                 }
             }
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(this.transform.position, chaseDistance);
         }
     }
 }

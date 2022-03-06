@@ -27,11 +27,6 @@ namespace RPG.Control
             else if (InteractWithMovement()) return;
             else
                 print("Nothing to do.");
-            else
-            {
-                print("dead");
-            }
-            
         }
 
         private bool InteractWithCombat()
