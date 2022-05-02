@@ -14,11 +14,11 @@ GameObject:
   - component: {fileID: 4677772240488025149}
   - component: {fileID: 4677772240488025145}
   - component: {fileID: 730767417}
-  - component: {fileID: 730767410}
   - component: {fileID: 730767416}
   - component: {fileID: 730767419}
   - component: {fileID: 730767420}
-  - component: {fileID: 6405462219895516064}
+  - component: {fileID: 1755369813}
+  - component: {fileID: 6738526068575251627}
   m_Layer: 0
   m_Name: Character
   m_TagString: unit
@@ -105,7 +105,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5.66
+  m_Speed: 3
   m_Acceleration: 50
   avoidancePriority: 50
   m_AngularSpeed: 5000
@@ -150,18 +150,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &730767410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4677772240488025147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2def6b3ce92127b4980a0855d79178f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &730767416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c43ccab57a580844a30f26f230e1375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 100
+  hp: 5
 --- !u!114 &730767420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,7 +190,7 @@ MonoBehaviour:
   weaponRange: 2
   timeBetweenAttacks: 1
   weaponDamage: 5
---- !u!114 &6405462219895516064
+--- !u!114 &1755369813
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -211,10 +199,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 4677772240488025147}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4790afd06adce1d41a3b1411677a5430, type: 3}
+  m_Script: {fileID: 11500000, guid: 5116a68e738937a4c80669e6df8d0d7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faction: 
+  localPatrolPath: []
+--- !u!114 &6738526068575251627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4677772240488025147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f45b6955db9a0f245bdbcbf9c640b9be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7059190124005568636
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -273,7 +273,7 @@ PrefabInstance:
     - target: {fileID: 13707166, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3f6fc0cf5e5d31c458bc74ede87cb8ae, type: 2}
+      objectReference: {fileID: 2100000, guid: 75a95c1a6b684504c93637e35347c475, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 679ff741e12a7e740819ede24a7000b7, type: 3}
 --- !u!4 &7059190124005463398 stripped

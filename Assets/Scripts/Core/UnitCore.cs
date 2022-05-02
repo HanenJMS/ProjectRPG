@@ -23,5 +23,9 @@ namespace RPG.Core
         {
             return this.faction;
         }
+        void IsEnemyDetected()
+        {
+            
+        }
     }
 }

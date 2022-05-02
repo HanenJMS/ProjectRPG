@@ -32,9 +32,9 @@ namespace RPG.Combat
         }
         public bool CanAttack(GameObject combatTarget)
         {
-            if(combatTarget == null) return false;
-            Health testHealth = combatTarget.GetComponent<Health>();
-            return testHealth != null && !testHealth.IsDead();
+            if (combatTarget == null) { return false; }
+            Health targetHealth = combatTarget.GetComponent<Health>();
+            return targetHealth != null && !targetHealth.IsDead() && targetHealth != this.gameObject.GetComponent<Health>();
         }
         public void Attack(GameObject combatTarget)
         {
@@ -45,11 +45,6 @@ namespace RPG.Combat
         {
             StopAttackAnimation();
             target = null;
-        }
-        private void StopAttackAnimation()
-        {
-            GetComponent<Animator>().ResetTrigger("attack");
-            GetComponent<Animator>().SetTrigger("stopAttack");
         }
         private void FaceTarget()
         {
@@ -79,11 +74,17 @@ namespace RPG.Combat
             GetComponent<Animator>().ResetTrigger("stopAttack");
             GetComponent<Animator>().SetTrigger("attack");
         }
+        private void StopAttackAnimation()
+        {
+            GetComponent<Animator>().ResetTrigger("attack");
+            GetComponent<Animator>().SetTrigger("stopAttack");
+        }
         private bool GetIsInRange()
         {
             return Vector3.Distance(transform.position, target.transform.position) < weaponRange;
         }
         //Animation Event
+        //animation event is not referenced but triggered with the animation
         void Hit()
         {
             if (target == null) return;

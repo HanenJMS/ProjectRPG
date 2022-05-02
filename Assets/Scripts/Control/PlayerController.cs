@@ -11,9 +11,11 @@ namespace RPG.Control
     public class PlayerController : MonoBehaviour
     {
         Health health;
+        UnitCore unit;
         private void Start()
         {
             health = this.gameObject.GetComponent<Health>();
+            unit = this.gameObject.GetComponent<UnitCore>();
         }
         private static Ray GetMouseRay()
         {
@@ -24,9 +26,8 @@ namespace RPG.Control
         {
             if (health.IsDead()) return;
             if (InteractWithCombat()) return;
-            else if (InteractWithMovement()) return;
-            else
-                print("Nothing to do.");
+            if (InteractWithMovement()) return;
+            print("doing nothing.");
         }
 
         private bool InteractWithCombat()
@@ -35,7 +36,7 @@ namespace RPG.Control
             foreach (RaycastHit hit in hits)
             {
                 CombatTarget target = hit.transform.GetComponent<CombatTarget>();
-                if(target == null) continue;
+                if (target == null) continue;
                 if (!GetComponent<Fighter>().CanAttack(target.gameObject)) continue;
                 if (target != null)
                 {
