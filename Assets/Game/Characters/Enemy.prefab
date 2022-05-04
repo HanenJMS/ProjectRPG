@@ -62,7 +62,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4677772240488025147, guid: 8ee1711f98ad4e04f8a655cb17dba948, type: 3}
   m_PrefabInstance: {fileID: 400685847078857101}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &115236559818660048
+--- !u!114 &8642873980213647483
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,18 +74,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 641b66b5cf462e94fa87a74795c7dd7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chaseDistance: 3
+  chaseDistance: 8
   suspicionTime: 5
---- !u!114 &6739183366033847197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5000487306701940150}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4790afd06adce1d41a3b1411677a5430, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  faction: 
+  patrolPath: {fileID: 0}
+  waypointTolerence: 1

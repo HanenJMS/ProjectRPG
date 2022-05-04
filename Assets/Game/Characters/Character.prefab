@@ -17,8 +17,8 @@ GameObject:
   - component: {fileID: 730767416}
   - component: {fileID: 730767419}
   - component: {fileID: 730767420}
-  - component: {fileID: 1755369813}
   - component: {fileID: 6738526068575251627}
+  - component: {fileID: 6739183366033847197}
   m_Layer: 0
   m_Name: Character
   m_TagString: unit
@@ -190,19 +190,6 @@ MonoBehaviour:
   weaponRange: 2
   timeBetweenAttacks: 1
   weaponDamage: 5
---- !u!114 &1755369813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4677772240488025147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5116a68e738937a4c80669e6df8d0d7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  localPatrolPath: []
 --- !u!114 &6738526068575251627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +202,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f45b6955db9a0f245bdbcbf9c640b9be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6739183366033847197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4677772240488025147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4790afd06adce1d41a3b1411677a5430, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  faction: 
 --- !u!1001 &7059190124005568636
 PrefabInstance:
   m_ObjectHideFlags: 0

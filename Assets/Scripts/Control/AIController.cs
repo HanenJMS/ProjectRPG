@@ -1,6 +1,7 @@
 using RPG.Combat;
 using RPG.Core;
 using RPG.Movement;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,20 +12,22 @@ namespace RPG.Control
     {
         [SerializeField] float chaseDistance = 8f;
         [SerializeField] float suspicionTime = 5f;
+        [SerializeField] PatrolPath patrolPath;
+        [SerializeField] float waypointTolerence = 1f;
+        int currentPosition = 0; 
         Vector3 guardPosition;
         Fighter fighter;
         Health health;
         UnitCore player;
         Mover mover;
         float timeSinceLastSawPlayer = Mathf.Infinity;
-        PatrolPath patrolPath;
+        
         private void Start()
         {
             guardPosition = this.gameObject.transform.position;
             fighter = this.gameObject.GetComponent<Fighter>();
             health = this.gameObject.GetComponent<Health>();
             mover = this.gameObject.GetComponent<Mover>();
-            patrolPath = this.gameObject.GetComponentInChildren<PatrolPath>();
             setPlayer();
         }
 
@@ -51,18 +54,40 @@ namespace RPG.Control
             }
             else
             {
-                GuardBehaviour();
+                PatrolBehaviour();
             }
             timeSinceLastSawPlayer += Time.deltaTime;
 
         }
         void PatrolBehaviour()
         {
-            List<Waypoint> waypoints = patrolPath.GetWaypoints();
-            foreach (Waypoint wp in waypoints)
+            Vector3 nextPosition = guardPosition;
+            if (patrolPath != null)
             {
-                mover.StartMoveAction(wp.gameObject.transform.position);
+                if (AtWaypoint())
+                {
+                    CycleWaypoint();
+                }
+                nextPosition = GetCurrentWaypoint();
             }
+            mover.StartMoveAction(nextPosition);
+            
+        }
+
+        private bool AtWaypoint()
+        {
+            float distanceToWaypoint = Vector3.Distance(transform.position, GetCurrentWaypoint());
+            return distanceToWaypoint < waypointTolerence;
+        }
+        
+        private void CycleWaypoint()
+        {
+            currentPosition = patrolPath.GetNextIndex(currentPosition);
+        }
+
+        private Vector3 GetCurrentWaypoint()
+        {
+            return patrolPath.GetWaypoint(currentPosition);
         }
 
         private void GuardBehaviour()
