@@ -40,7 +40,7 @@ namespace RPG.Control
                 if (!GetComponent<Fighter>().CanAttack(target.gameObject)) continue;
                 if (target != null)
                 {
-                    if (Input.GetMouseButtonDown(1))
+                    if (Input.GetMouseButton(1))
                     {
                         GetComponent<Fighter>().Attack(target.gameObject);
                     }
@@ -58,7 +58,7 @@ namespace RPG.Control
             {
                 if (Input.GetMouseButton(1))
                 {
-                    this.gameObject.GetComponent<Mover>().StartMoveAction(hit.point);
+                    this.gameObject.GetComponent<Mover>().StartMoveAction(hit.point, 1f);
                     print("Running to point");
                 }
                 return true;

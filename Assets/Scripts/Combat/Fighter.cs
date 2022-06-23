@@ -12,6 +12,7 @@ namespace RPG.Combat
         [SerializeField] float weaponRange = 2f;
         [SerializeField] float timeBetweenAttacks = 1f;
         [SerializeField] float weaponDamage = 5f;
+        bool isAttacking = false;
         Health target;
         float timeSinceLastAttack = Mathf.Infinity;
         
@@ -26,8 +27,12 @@ namespace RPG.Combat
             }
             else
             {
-                GetComponent<Mover>().Cancel();
-                AttackBehavior();
+                isAttacking = true;
+                if (isAttacking)
+                {
+                    GetComponent<Mover>().Cancel();
+                    AttackBehavior();
+                }
             }
         }
         public bool CanAttack(GameObject combatTarget)
@@ -52,7 +57,7 @@ namespace RPG.Combat
         }
         private void MovingInRangeOfWeapon()
         {
-            GetComponent<Mover>().MoveTo(target.transform.position);
+            GetComponent<Mover>().MoveTo(target.transform.position, 1f);
             print("moving in range");
         }
         private void DoDamage()
@@ -62,12 +67,12 @@ namespace RPG.Combat
         private void AttackBehavior()
         {
             FaceTarget();
-            if(timeSinceLastAttack > timeBetweenAttacks)
+            if (timeSinceLastAttack > timeBetweenAttacks)
             {
                 StartAttackAnimation();
                 timeSinceLastAttack = 0f;
             }
-
+            isAttacking = false;
         }
         private void StartAttackAnimation()
         {
