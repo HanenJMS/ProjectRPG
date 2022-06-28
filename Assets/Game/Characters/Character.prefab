@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 730767420}
   - component: {fileID: 6738526068575251627}
   - component: {fileID: 6739183366033847197}
+  - component: {fileID: 5098684455590865597}
   m_Layer: 0
   m_Name: Character
   m_TagString: unit
@@ -95,6 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  maxSpeed: 6
 --- !u!195 &4677772240488025149
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -215,6 +217,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   faction: 
+--- !u!114 &5098684455590865597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4677772240488025147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac13a92f3880a7f41addd299e8d8b80c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 
 --- !u!1001 &7059190124005568636
 PrefabInstance:
   m_ObjectHideFlags: 0

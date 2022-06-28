@@ -55,6 +55,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5098684455590865597, guid: 8ee1711f98ad4e04f8a655cb17dba948, type: 3}
+      propertyPath: uniqueIdentifier
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ee1711f98ad4e04f8a655cb17dba948, type: 3}
 --- !u!1 &5000487306701940150 stripped
@@ -76,5 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chaseDistance: 8
   suspicionTime: 5
+  patrolHoldTime: 5
   patrolPath: {fileID: 0}
   waypointTolerence: 1
+  patrolSpeedFraction: 0.2

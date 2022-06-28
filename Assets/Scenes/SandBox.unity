@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: chaseDistance
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 4849725716950270768, guid: 26daa19772e09224a8c91cbfebd7caa6, type: 3}
+      propertyPath: uniqueIdentifier
+      value: eee07107-d4fb-4f35-b9b1-4de4f571b041
+      objectReference: {fileID: 0}
     - target: {fileID: 5000487306701940147, guid: 26daa19772e09224a8c91cbfebd7caa6, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -222,6 +226,10 @@ PrefabInstance:
     - target: {fileID: 115236559818660048, guid: 26daa19772e09224a8c91cbfebd7caa6, type: 3}
       propertyPath: chaseDistance
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4849725716950270768, guid: 26daa19772e09224a8c91cbfebd7caa6, type: 3}
+      propertyPath: uniqueIdentifier
+      value: 4acf0764-3f8b-4c79-ac96-c131bb7e20ef
       objectReference: {fileID: 0}
     - target: {fileID: 5000487306701940147, guid: 26daa19772e09224a8c91cbfebd7caa6, type: 3}
       propertyPath: m_RootOrder
@@ -716,6 +724,10 @@ PrefabInstance:
     - target: {fileID: 115236559818660048, guid: 26daa19772e09224a8c91cbfebd7caa6, type: 3}
       propertyPath: chaseDistance
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4849725716950270768, guid: 26daa19772e09224a8c91cbfebd7caa6, type: 3}
+      propertyPath: uniqueIdentifier
+      value: 1a58b237-f571-46af-a137-f971ab485110
       objectReference: {fileID: 0}
     - target: {fileID: 5000487306701940147, guid: 26daa19772e09224a8c91cbfebd7caa6, type: 3}
       propertyPath: m_RootOrder
@@ -1506,6 +1518,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2675700711990953379, guid: 8db32d10b86f7914ca076b3896a7bd8e, type: 3}
+      propertyPath: uniqueIdentifier
+      value: b81c5f14-98c3-4298-87a8-fee4b7fd416e
+      objectReference: {fileID: 0}
     - target: {fileID: 2845857976026657868, guid: 8db32d10b86f7914ca076b3896a7bd8e, type: 3}
       propertyPath: persistentObjectPrefab
       value: 
