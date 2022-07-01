@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 4252684502019205492}
-  followTransform: {fileID: 0}
+  followTransform: {fileID: 1159951817795266126, guid: de8b8ef0e4e3cab4ca9457013d13d3fc, type: 3}
   normalSpeed: 0.5
   fastSpeed: 3
   movementSpeed: 1

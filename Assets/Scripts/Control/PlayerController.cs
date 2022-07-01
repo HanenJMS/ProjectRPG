@@ -21,7 +21,6 @@ namespace RPG.Control
         {
             return Camera.main.ScreenPointToRay(Input.mousePosition);
         }
-
         private void Update()
         {
             if (health.IsDead()) return;
@@ -29,7 +28,6 @@ namespace RPG.Control
             if (InteractWithMovement()) return;
             print("doing nothing.");
         }
-
         private bool InteractWithCombat()
         {
             RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
@@ -49,7 +47,6 @@ namespace RPG.Control
             }
             return false;
         }
-
         private bool InteractWithMovement()
         {
             RaycastHit hit;
@@ -64,6 +61,10 @@ namespace RPG.Control
                 return true;
             }
             return false;
+        }
+        private void OnMouseDown()
+        {
+            CameraController.instance.followTransform = transform;
         }
     }
 }

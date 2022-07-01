@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b8c453874712ff42bf50b39de477dbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  persistentObjectPrefab: {fileID: 7734417111658270955, guid: 6b3ff4b3930da5445926d0da28748cbc, type: 3}
 --- !u!1 &3679976327281278905
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +158,7 @@ PrefabInstance:
     - target: {fileID: 4252684502310833643, guid: 569c8fd5228c45a4d8e318e24ea9a9e2, type: 3}
       propertyPath: followTransform
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2524580887334445856}
     - target: {fileID: 4252684502310833644, guid: 569c8fd5228c45a4d8e318e24ea9a9e2, type: 3}
       propertyPath: m_RootOrder
       value: 2

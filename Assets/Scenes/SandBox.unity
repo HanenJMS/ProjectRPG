@@ -427,6 +427,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &650854202 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2524580887334445856, guid: 8db32d10b86f7914ca076b3896a7bd8e, type: 3}
+  m_PrefabInstance: {fileID: 3679976326644583712}
+  m_PrefabAsset: {fileID: 0}
 --- !u!108 &705507994 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 3679976327281278906, guid: 8db32d10b86f7914ca076b3896a7bd8e, type: 3}
@@ -1518,14 +1523,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2675700711990953379, guid: 8db32d10b86f7914ca076b3896a7bd8e, type: 3}
-      propertyPath: uniqueIdentifier
-      value: b81c5f14-98c3-4298-87a8-fee4b7fd416e
-      objectReference: {fileID: 0}
     - target: {fileID: 2845857976026657868, guid: 8db32d10b86f7914ca076b3896a7bd8e, type: 3}
       propertyPath: persistentObjectPrefab
       value: 
       objectReference: {fileID: 7734417111658270955, guid: 6b3ff4b3930da5445926d0da28748cbc, type: 3}
+    - target: {fileID: 3679976326731941067, guid: 8db32d10b86f7914ca076b3896a7bd8e, type: 3}
+      propertyPath: followTransform
+      value: 
+      objectReference: {fileID: 650854202}
     - target: {fileID: 3679976326843068943, guid: 8db32d10b86f7914ca076b3896a7bd8e, type: 3}
       propertyPath: m_Name
       value: Core

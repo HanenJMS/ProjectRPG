@@ -1,15 +1,17 @@
 using RPG.Combat;
+using RPG.Saving;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Core
 {
-    public class CameraController : MonoBehaviour
+    public class CameraController : MonoBehaviour, ISaveable
     {
-        //public static CameraController instance;
+        public static CameraController instance;
+
         [SerializeField] Transform cameraTransform;
-        [SerializeField] Transform followTransform;
+        public Transform followTransform;
 
         [SerializeField] float normalSpeed;
         [SerializeField] float fastSpeed;
@@ -31,7 +33,7 @@ namespace RPG.Core
 
         private void Start()
         {
-            //instance = this;
+            instance = this;
             newPosition = transform.position;
             newRotation = transform.rotation;
             newZoom = cameraTransform.localPosition;
@@ -54,9 +56,6 @@ namespace RPG.Core
                 followTransform = null;
             }
         }
-
-        
-
         void HandleMovementInput()
         {
             if(Input.GetKey(KeyCode.LeftShift))
@@ -160,6 +159,17 @@ namespace RPG.Core
             transform.position = Vector3.Lerp(transform.position, newPosition, movementTime * Time.deltaTime);
             transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, movementTime * Time.deltaTime);
             cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, movementTime * Time.deltaTime);
+        }
+
+        public object CaptureState()
+        {
+            return followTransform;
+        }
+
+        public void RestoreState(object state)
+        {
+            Transform follow = (Transform)state;
+            followTransform = follow;
         }
     }
 }

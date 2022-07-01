@@ -1,10 +1,12 @@
+using RPG.Saving;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Core
 {
-    public class Health : MonoBehaviour
+    //[System.Serializable]
+    public class Health : MonoBehaviour, ISaveable
     {
         [SerializeField] float hp = 100f;
         bool isDead = false;
@@ -17,12 +19,12 @@ namespace RPG.Core
                 print(hp);
                 if(hp <= 0)
                 {
-                    Dying();
+                    Die();
                 }
             }
         }
 
-        private void Dying()
+        private void Die()
         {
             if (isDead) return;
 
@@ -39,6 +41,21 @@ namespace RPG.Core
         public bool IsDead()
         {
             return this.isDead;
+        }
+
+        public object CaptureState()
+        {
+            return hp;
+        }
+
+        public void RestoreState(object state)
+        {
+            float hp = (float)state;
+            this.hp = hp;
+            if(hp <= 0)
+            {
+                Die();
+            }
         }
     }
 }
