@@ -44,7 +44,7 @@ namespace RPG.Saving
             SerializedProperty property = serializedObject.FindProperty("uniqueIdentifier");
             if (string.IsNullOrEmpty(property.stringValue) || !IsUnique(property.stringValue))
             {
-                property.stringValue = System.Guid.NewGuid().ToString();
+                property.stringValue = Guid.NewGuid().ToString();
                 serializedObject.ApplyModifiedProperties();
             }
             globalLookup[property.stringValue] = this;

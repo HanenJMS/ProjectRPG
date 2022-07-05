@@ -7,6 +7,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 730767419, guid: 8ee1711f98ad4e04f8a655cb17dba948, type: 3}
+      propertyPath: hp
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 730767420, guid: 8ee1711f98ad4e04f8a655cb17dba948, type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 11400000, guid: b6a582850d25a9045be6d954a3f8103a, type: 2}
+    - target: {fileID: 730767420, guid: 8ee1711f98ad4e04f8a655cb17dba948, type: 3}
+      propertyPath: handTransform
+      value: 
+      objectReference: {fileID: 7239762503425740917}
     - target: {fileID: 4677772240488025147, guid: 8ee1711f98ad4e04f8a655cb17dba948, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -64,6 +76,11 @@ PrefabInstance:
 --- !u!1 &5000487306701940150 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4677772240488025147, guid: 8ee1711f98ad4e04f8a655cb17dba948, type: 3}
+  m_PrefabInstance: {fileID: 400685847078857101}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7239762503425740917 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7059190124005505528, guid: 8ee1711f98ad4e04f8a655cb17dba948, type: 3}
   m_PrefabInstance: {fileID: 400685847078857101}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &8642873980213647483

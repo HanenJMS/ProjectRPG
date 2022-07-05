@@ -53,6 +53,9 @@ namespace RPG.Core
             }
             if(Input.GetKeyDown(KeyCode.Escape))
             {
+                newPosition = transform.position;
+                newRotation = transform.rotation;
+                newZoom = cameraTransform.localPosition;
                 followTransform = null;
             }
         }
