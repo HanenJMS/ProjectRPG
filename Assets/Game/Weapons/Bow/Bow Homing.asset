@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fb2b65751fcc0242bdf59b7e4941ac0, type: 3}
+  m_Name: Bow Homing
+  m_EditorClassIdentifier: 
+  animatorOverride: {fileID: 22100000, guid: ab4ef5c3e3263cf4786e449447389334, type: 2}
+  equippedPrefab: {fileID: 7007012874860661227, guid: eb168a3bb34e9c24e96b10aa4c131417, type: 3}
+  weaponRange: 20
+  weaponDamage: 15
+  isRightHanded: 0
+  projectile: {fileID: 3106100128681583080, guid: 6f5cedb2cfc4ddb4ba65ae5001c96663, type: 3}
