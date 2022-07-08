@@ -1206,31 +1206,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3679976327281278907, guid: 8db32d10b86f7914ca076b3896a7bd8e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.117972374
+      value: 0.45663193
       objectReference: {fileID: 0}
     - target: {fileID: 3679976327281278907, guid: 8db32d10b86f7914ca076b3896a7bd8e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.98846465
+      value: 0.8845212
       objectReference: {fileID: 0}
     - target: {fileID: 3679976327281278907, guid: 8db32d10b86f7914ca076b3896a7bd8e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.056479286
+      value: -0.080307506
       objectReference: {fileID: 0}
     - target: {fileID: 3679976327281278907, guid: 8db32d10b86f7914ca076b3896a7bd8e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.076357074
+      value: 0.05157828
       objectReference: {fileID: 0}
     - target: {fileID: 3679976327281278907, guid: 8db32d10b86f7914ca076b3896a7bd8e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 166.004
+      value: 125.30499
       objectReference: {fileID: 0}
     - target: {fileID: 3679976327281278907, guid: 8db32d10b86f7914ca076b3896a7bd8e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -8.153992
+      value: -1.7749939
       objectReference: {fileID: 0}
     - target: {fileID: 3679976327281278907, guid: 8db32d10b86f7914ca076b3896a7bd8e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 5.5379944
+      value: 9.457001
       objectReference: {fileID: 0}
     - target: {fileID: 7197831792915189538, guid: 8db32d10b86f7914ca076b3896a7bd8e, type: 3}
       propertyPath: defaultWeapon
@@ -1479,6 +1479,10 @@ PrefabInstance:
     - target: {fileID: 6655303660320631628, guid: 3458b4f7c6e3bb54c9ac60c4d797002c, type: 3}
       propertyPath: m_Name
       value: Bow Pickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 6655303660320631628, guid: 3458b4f7c6e3bb54c9ac60c4d797002c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6891988240805727159, guid: 3458b4f7c6e3bb54c9ac60c4d797002c, type: 3}
       propertyPath: m_RootOrder

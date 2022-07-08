@@ -66,7 +66,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4056880033587015201, guid: d9b67670d8195104d86ab02fba6aad8e, type: 3}
       propertyPath: m_Name
-      value: Bow Pickup
+      value: Normal Bow Pickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 4056880033587015201, guid: d9b67670d8195104d86ab02fba6aad8e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4302572917150289626, guid: d9b67670d8195104d86ab02fba6aad8e, type: 3}
       propertyPath: m_RootOrder
