@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8105766966643163757}
   - component: {fileID: 4555525178386110723}
   m_Layer: 0
-  m_Name: Projectile Normal
+  m_Name: Projectile Normal Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,6 +48,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   isHoming: 0
+  hitEffect: {fileID: 0}
+  maxLifeTime: 10
+  destroyOnHit: {fileID: 4269722890141006108}
+  lifeAfterImpact: 1
 --- !u!65 &4555525178386110723
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -225,7 +229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4698645134446012, guid: cc64a580633f7bc48ad844b2335c0555, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4698645134446012, guid: cc64a580633f7bc48ad844b2335c0555, type: 3}
       propertyPath: m_LocalPosition.y

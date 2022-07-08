@@ -7,6 +7,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -676158953836404751, guid: 885c8f81a113cb841a42afa001e92d7c, type: 3}
+      propertyPath: speed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: -676158953836404751, guid: 885c8f81a113cb841a42afa001e92d7c, type: 3}
+      propertyPath: isHoming
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -676158953836404751, guid: 885c8f81a113cb841a42afa001e92d7c, type: 3}
+      propertyPath: hitEffect
+      value: 
+      objectReference: {fileID: 4472357149147051483, guid: 838597c1edc14824bafb02019ad8a0b7, type: 3}
+    - target: {fileID: -676158953836404751, guid: 885c8f81a113cb841a42afa001e92d7c, type: 3}
+      propertyPath: destroyOnHit
+      value: 
+      objectReference: {fileID: 4807666673904289921}
     - target: {fileID: 561605236175449840, guid: 885c8f81a113cb841a42afa001e92d7c, type: 3}
       propertyPath: m_Parameters.colorGradient.ctime1
       value: 21974
@@ -175,5 +191,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: Projectile Iceball
       objectReference: {fileID: 0}
+    - target: {fileID: 7830522441450760757, guid: 885c8f81a113cb841a42afa001e92d7c, type: 3}
+      propertyPath: m_Size.x
+      value: 0.8561538
+      objectReference: {fileID: 0}
+    - target: {fileID: 7830522441450760757, guid: 885c8f81a113cb841a42afa001e92d7c, type: 3}
+      propertyPath: m_Center.x
+      value: 0.014732093
+      objectReference: {fileID: 0}
+    - target: {fileID: 7830522441450760757, guid: 885c8f81a113cb841a42afa001e92d7c, type: 3}
+      propertyPath: m_Center.y
+      value: 0.051357716
+      objectReference: {fileID: 0}
+    - target: {fileID: 8373645992117533218, guid: 885c8f81a113cb841a42afa001e92d7c, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8373645992117533218, guid: 885c8f81a113cb841a42afa001e92d7c, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.g
+      value: 0.8594041
+      objectReference: {fileID: 0}
+    - target: {fileID: 8373645992117533218, guid: 885c8f81a113cb841a42afa001e92d7c, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8373645992117533218, guid: 885c8f81a113cb841a42afa001e92d7c, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key2.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8373645992117533218, guid: 885c8f81a113cb841a42afa001e92d7c, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key2.r
+      value: 0.0032367706
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 885c8f81a113cb841a42afa001e92d7c, type: 3}
+--- !u!1 &4807666673904289921 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1392343035883920473, guid: 885c8f81a113cb841a42afa001e92d7c, type: 3}
+  m_PrefabInstance: {fileID: 5902771892520293592}
+  m_PrefabAsset: {fileID: 0}
