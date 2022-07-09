@@ -1,13 +1,19 @@
+using RPG.Core;
 using RPG.Saving;
+using RPG.Stats;
 using UnityEngine;
 
-namespace RPG.Core
+namespace RPG.Attributes
 {
     //[System.Serializable]
     public class Health : MonoBehaviour, ISaveable
     {
         [SerializeField] float hp = 100f;
         bool isDead = false;
+        private void Start()
+        {
+            hp = GetComponent<BaseStats>().GetHealth();
+        }
         public void TakeDamage(float damage)
         {
             //if death trigger has not been triggered.
@@ -35,7 +41,11 @@ namespace RPG.Core
         {
             this.gameObject.GetComponent<Animator>().SetTrigger("die");
         }
-
+        public float GetPercentage()
+        {
+            float hpMax = GetComponent<BaseStats>().GetHealth();
+            return (hp / hpMax) * 100;
+        }
         public bool IsDead()
         {
             return this.isDead;
