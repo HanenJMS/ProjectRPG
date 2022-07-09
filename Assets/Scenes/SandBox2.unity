@@ -1388,6 +1388,18 @@ PrefabInstance:
       propertyPath: m_Shadows.m_Strength
       value: 0.242
       objectReference: {fileID: 0}
+    - target: {fileID: 3679976327281278906, guid: 8db32d10b86f7914ca076b3896a7bd8e, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 1e-45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3679976327281278906, guid: 8db32d10b86f7914ca076b3896a7bd8e, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: -7.4483737e-22
+      objectReference: {fileID: 0}
+    - target: {fileID: 3679976327281278906, guid: 8db32d10b86f7914ca076b3896a7bd8e, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 4.5905e-41
+      objectReference: {fileID: 0}
     - target: {fileID: 3679976327281278907, guid: 8db32d10b86f7914ca076b3896a7bd8e, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.45663193
