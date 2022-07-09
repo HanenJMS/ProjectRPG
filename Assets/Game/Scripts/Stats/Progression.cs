@@ -6,13 +6,16 @@ namespace RPG.Stats
     public class Progression : ScriptableObject
     {
         [SerializeField] ProgressionCharacterClass[] characterClasses = null;
-        public float GetHealth(CharacterClass characterClass, int level)
+        public float GetStat(Stat stat, CharacterClass characterClass, int level)
         {
             foreach(ProgressionCharacterClass progressionClass in characterClasses)
             {
-                if (progressionClass.GetCharacterClass() == characterClass)
+                if (progressionClass.GetCharacterClass() != characterClass) continue;
+                foreach(ProgressionStat progressionStat in progressionClass.stats)
                 {
-                    return progressionClass.GetHealth(level);
+                    if (progressionStat.GetStat() != stat) continue;
+                    if (progressionStat.HasNoLevelProgression(level)) continue;
+                    return progressionStat.GetLevel(level);
                 }
             }
             return 0f;
@@ -22,14 +25,32 @@ namespace RPG.Stats
         class ProgressionCharacterClass
         {
             [SerializeField] CharacterClass characterClass;
-            [SerializeField] float[] health;
+            public ProgressionStat[] stats;
             public CharacterClass GetCharacterClass()
             {
                 return characterClass;
             }
             public float GetHealth(int level)
             {
-                return health[level-1];
+                return 1;//health[level-1];
+            }
+        }
+        [System.Serializable]
+        class ProgressionStat
+        {   
+            [SerializeField] Stat stat;
+            [SerializeField] float[] levels;
+            public Stat GetStat()
+            {
+                return stat;
+            }
+            public float GetLevel(int level)
+            {
+                return levels[level-1];
+            }
+            public bool HasNoLevelProgression(int level)
+            {
+                return levels.Length < level;
             }
         }
     }

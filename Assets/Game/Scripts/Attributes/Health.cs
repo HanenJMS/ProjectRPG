@@ -12,9 +12,9 @@ namespace RPG.Attributes
         bool isDead = false;
         private void Start()
         {
-            hp = GetComponent<BaseStats>().GetHealth();
+            hp = GetComponent<BaseStats>().GetStat(Stat.Health);
         }
-        public void TakeDamage(float damage)
+        public void TakeDamage(GameObject instigator, float damage)
         {
             //if death trigger has not been triggered.
             if(!isDead)
@@ -24,14 +24,22 @@ namespace RPG.Attributes
                 if(hp <= 0)
                 {
                     Die();
+                    AwardExperience(instigator);
                 }
             }
+        }
+
+        private void AwardExperience(GameObject instigator)
+        {
+            Experience exp = instigator.GetComponent<Experience>();
+            if (exp == null) return;
+            exp.GainExperience(GetComponent<BaseStats>().GetStat(Stat.ExperienceReward));
         }
 
         private void Die()
         {
             if (isDead) return;
-
+            
             PlayDeathAnimation();
             isDead = !isDead;
             GetComponent<ActionScheduler>().CancelCurrentAction();
@@ -43,7 +51,7 @@ namespace RPG.Attributes
         }
         public float GetPercentage()
         {
-            float hpMax = GetComponent<BaseStats>().GetHealth();
+            float hpMax = GetComponent<BaseStats>().GetStat(Stat.Health);
             return (hp / hpMax) * 100;
         }
         public bool IsDead()

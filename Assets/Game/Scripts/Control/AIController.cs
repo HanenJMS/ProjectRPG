@@ -38,8 +38,6 @@ namespace RPG.Control
             mover = this.gameObject.GetComponent<Mover>();
             setPlayer();
         }
-
-        bool isIdle = false;
         private void Update()
         {
             if (health.IsDead()) return;
