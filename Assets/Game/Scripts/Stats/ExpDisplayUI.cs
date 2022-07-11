@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-namespace RPG.Attributes
+namespace RPG.Stats
 {
     public class ExpDisplayUI : MonoBehaviour
     {
@@ -15,7 +15,7 @@ namespace RPG.Attributes
         }
         private void Update()
         {
-            GetComponent<TextMeshProUGUI>().SetText(String.Format("Exp: {0:0.00}%", exp.GetExperience()));
+            GetComponent<TextMeshProUGUI>().SetText(String.Format("Exp: {0:0.00}", exp.GetExperiencePoints()));
         }
     }
 }
