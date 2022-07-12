@@ -12,11 +12,10 @@ namespace RPG.Stats
         private void Start()
         {
             stats = GameObject.FindGameObjectWithTag("Player").GetComponent<BaseStats>();
-            Experience exp = GameObject.FindGameObjectWithTag("Player").GetComponent<Experience>();
-            exp.OnExperenceGained += UpdateHealthUI;
-            UpdateHealthUI();
+            //Experience exp = GameObject.FindGameObjectWithTag("Player").GetComponent<Experience>();
+            //exp.OnExperenceGained += UpdateLevelDisplayUI;
         }
-        private void UpdateHealthUI()
+        private void Update()
         {
             print("Calculating. Debugging for loop. Inside DislayLevel.cs UI");
             GetComponent<TextMeshProUGUI>().SetText(String.Format("Level: {0:0}", stats.GetLevel()));
