@@ -12,8 +12,9 @@ namespace RPG.Stats
         private void Awake()
         {
             exp = GameObject.FindGameObjectWithTag("Player").GetComponent<Experience>();
+            exp.OnExperenceGained += UpdateExpUI;
         }
-        private void Update()
+        private void UpdateExpUI()
         {
             GetComponent<TextMeshProUGUI>().SetText(String.Format("Exp: {0:0.00}", exp.GetExperiencePoints()));
         }
