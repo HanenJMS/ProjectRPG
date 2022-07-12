@@ -14,6 +14,7 @@ namespace RPG.Stats
             stats = GameObject.FindGameObjectWithTag("Player").GetComponent<BaseStats>();
             Experience exp = GameObject.FindGameObjectWithTag("Player").GetComponent<Experience>();
             exp.OnExperenceGained += UpdateHealthUI;
+            UpdateHealthUI();
         }
         private void UpdateHealthUI()
         {

@@ -9,10 +9,11 @@ namespace RPG.Stats
     public class DisplayExp : MonoBehaviour
     {
         Experience exp;
-        private void Awake()
+        private void Start()
         {
             exp = GameObject.FindGameObjectWithTag("Player").GetComponent<Experience>();
             exp.OnExperenceGained += UpdateExpUI;
+            UpdateExpUI();
         }
         private void UpdateExpUI()
         {
