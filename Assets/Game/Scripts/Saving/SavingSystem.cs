@@ -34,6 +34,12 @@ namespace RPG.Saving
         {
             RestoreState(LoadFile(saveFile));
         }
+        public void Delete(string saveFile)
+        {
+            string path = GetPathFromSaveFile(saveFile);
+            print("Deleting " + path);
+            File.Delete(path);
+        }
         private void SaveFile(string saveFile, object state)
         {
             string path = GetPathFromSaveFile(saveFile); //getting the system path

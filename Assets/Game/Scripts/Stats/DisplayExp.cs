@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace RPG.Stats
 {
-    public class ExpDisplayUI : MonoBehaviour
+    public class DisplayExp : MonoBehaviour
     {
         Experience exp;
         private void Awake()
