@@ -14,48 +14,20 @@ namespace RPG.Attributes
         bool isDead = false;
         private void Start()
         {
-            GetComponent<BaseStats>().onLevelUp += RegenerateHealth;
+            GetComponent<BaseStats>().OnLevelUp += RegenerateHealth;
             if(hp < 0)
             {
                 hp = GetComponent<BaseStats>().GetStat(Stat.Health);
             }
         }
-
-    
-
-        public void TakeDamage(GameObject instigator, float damage)
+        //Modifiers In
+        public float GetCurrentHealth()
         {
-            //if death trigger has not been triggered.
-            if(!isDead)
-            {
-                hp = Mathf.Max(hp - damage, 0);
-                if(hp <= 0)
-                {
-                    Die();
-                    AwardExperience(instigator);
-                }
-            }
+            return hp;
         }
-
-        private void AwardExperience(GameObject instigator)
+        public float GetLevelMaxHealth()
         {
-            Experience exp = instigator.GetComponent<Experience>();
-            if (exp == null) return;
-            exp.GainExperience(GetComponent<BaseStats>().GetStat(Stat.ExperienceReward));
-        }
-
-        private void Die()
-        {
-            if (isDead) return;
-            
-            PlayDeathAnimation();
-            isDead = !isDead;
-            GetComponent<ActionScheduler>().CancelCurrentAction();
-        }
-
-        private void PlayDeathAnimation()
-        {
-            this.gameObject.GetComponent<Animator>().SetTrigger("die");
+            return GetComponent<BaseStats>().GetStat(Stat.Health);
         }
         public float GetPercentage()
         {
@@ -65,25 +37,59 @@ namespace RPG.Attributes
         {
             return this.isDead;
         }
-
-        public object CaptureState()
+        //Modifiers Out
+        public void TakeDamage(GameObject instigator, float damage)
         {
-            return hp;
-        }
-
-        public void RestoreState(object state)
-        {
-            float hp = (float)state;
-            this.hp = hp;
-            if(hp <= 0)
+            //if death trigger has not been triggered.
+            if (!isDead)
             {
-                Die();
+                hp = Mathf.Max(hp - damage, 0);
+                print($"{gameObject.name} took damage: {damage}");
+                if (hp <= 0)
+                {
+                    Die();
+                    AwardExperience(instigator);
+                }
             }
+        }
+        private void AwardExperience(GameObject instigator)
+        {
+            Experience exp = instigator.GetComponent<Experience>();
+            if (exp == null) return;
+            exp.GainExperience(GetComponent<BaseStats>().GetStat(Stat.ExperienceReward));
         }
         private void RegenerateHealth()
         {
             float regenHealthPoints = GetComponent<BaseStats>().GetStat(Stat.Health) * (regenerationPercentage / 100);
             hp = Mathf.Max(hp, regenHealthPoints);
+        }
+        //helper Methods
+        private void Die()
+        {
+            if (isDead) return;
+            
+            PlayDeathAnimation();
+            isDead = !isDead;
+            GetComponent<ActionScheduler>().CancelCurrentAction();
+        }
+        //Visual Effects
+        private void PlayDeathAnimation()
+        {
+            this.gameObject.GetComponent<Animator>().SetTrigger("die");
+        }
+        //Saving System
+        public object CaptureState()
+        {
+            return hp;
+        }
+        public void RestoreState(object state)
+        {
+            float hp = (float)state;
+            this.hp = hp;
+            if (hp <= 0)
+            {
+                Die();
+            }
         }
     }
 }

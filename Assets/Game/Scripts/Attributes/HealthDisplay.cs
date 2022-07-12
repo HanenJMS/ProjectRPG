@@ -1,9 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace RPG.Attributes
 {
@@ -16,7 +13,7 @@ namespace RPG.Attributes
         }
         private void Update()
         {
-            GetComponent<TextMeshProUGUI>().SetText(String.Format("Health: {0:0.00}%", health.GetPercentage()));
+            GetComponent<TextMeshProUGUI>().SetText(String.Format("Health: {0}/{1} {2:0.00}%", health.GetCurrentHealth(), health.GetLevelMaxHealth(), health.GetPercentage()));
         }
     }
 }

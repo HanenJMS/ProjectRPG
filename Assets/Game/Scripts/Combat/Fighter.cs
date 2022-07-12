@@ -2,6 +2,7 @@ using RPG.Attributes;
 using RPG.Core;
 using RPG.Movement;
 using RPG.Saving;
+using RPG.Stats;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -75,9 +76,9 @@ namespace RPG.Combat
             GetComponent<Mover>().MoveTo(target.transform.position, 1f);
             print("moving in range");
         }
-        private void DoDamage()
+        private void DoDamage(float damage)
         {
-            target.TakeDamage(gameObject, currentWeapon.GetDamageOutput());
+            target.TakeDamage(gameObject, damage);
         }
         private void AttackBehavior()
         {
@@ -109,13 +110,14 @@ namespace RPG.Combat
         void Hit()
         {
             if (target == null) return;
+            float damage = GetComponent<BaseStats>().GetStat(Stat.Damage) + currentWeapon.GetDamageOutput();
             if (currentWeapon.HasProjectile())
             {
-                currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target, gameObject);
+                currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target, gameObject, damage);
             }
             else
             {
-                DoDamage();
+                DoDamage(damage);
             }
         }
         void Shoot()

@@ -15,7 +15,7 @@ namespace RPG.Stats
         
         [SerializeField] GameObject levelUpParticleEffect;
         [SerializeField]int currentLevel = 0;
-        public event Action onLevelUp;
+        public event Action OnLevelUp;
         private void Start()
         {
             currentLevel = GetLevel();
@@ -33,7 +33,7 @@ namespace RPG.Stats
             {
                 currentLevel = newLevel;
                 LevelUpEffect();
-                onLevelUp();
+                OnLevelUp();
             }
         }
 
