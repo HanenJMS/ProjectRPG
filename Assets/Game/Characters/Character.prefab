@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: -1
-  hpMax: -1
+  regenerationPercentage: 70
 --- !u!114 &730767420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,6 +269,7 @@ MonoBehaviour:
   progression: {fileID: 11400000, guid: 56c4f176764b95c46ad7cc29fda5a027, type: 2}
   levelUpParticleEffect: {fileID: 5818917720675977217, guid: a6dac59ff67967246baa6b528d3c7d30, type: 3}
   currentLevel: 0
+  shouldUseModifiers: 1
 --- !u!114 &2107133716735611839
 MonoBehaviour:
   m_ObjectHideFlags: 0

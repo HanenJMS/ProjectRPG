@@ -3,11 +3,12 @@ using RPG.Core;
 using RPG.Movement;
 using RPG.Saving;
 using RPG.Stats;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Combat
 {
-    public class Fighter : MonoBehaviour, IAction, ISaveable
+    public class Fighter : MonoBehaviour, IAction, ISaveable, IModifierProvider
     {
         
         [SerializeField] float timeBetweenAttacks = 1f;
@@ -43,6 +44,20 @@ namespace RPG.Combat
                     GetComponent<Mover>().Cancel();
                     AttackBehavior();
                 }
+            }
+        }
+        public IEnumerable<float> GetAdditiveModifer(Stat stat)
+        {
+            if(stat == Stat.Damage)
+            {
+                yield return currentWeapon.GetDamageOutput();
+            }
+        }
+        public IEnumerable<float> GetPercentageModifier(Stat stat)
+        {
+            if(stat == Stat.Damage)
+            {
+                yield return currentWeapon.GetPercentageBonus();
             }
         }
         public void EquipWeapon(Weapon weapon)
@@ -110,7 +125,7 @@ namespace RPG.Combat
         void Hit()
         {
             if (target == null) return;
-            float damage = GetComponent<BaseStats>().GetStat(Stat.Damage) + currentWeapon.GetDamageOutput();
+            float damage = GetComponent<BaseStats>().GetStat(Stat.Damage);
             if (currentWeapon.HasProjectile())
             {
                 currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target, gameObject, damage);
@@ -123,7 +138,6 @@ namespace RPG.Combat
         void Shoot()
         {
             Hit();
-            
         }
 
         public object CaptureState()
@@ -137,5 +151,7 @@ namespace RPG.Combat
             Weapon weapon = Resources.Load<Weapon>(weaponName);
             EquipWeapon(weapon);
         }
+
+
     }
 }

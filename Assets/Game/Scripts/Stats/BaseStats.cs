@@ -15,6 +15,7 @@ namespace RPG.Stats
         
         [SerializeField] GameObject levelUpParticleEffect;
         [SerializeField]int currentLevel = 0;
+        [SerializeField] bool shouldUseModifiers = false;
         public event Action OnLevelUp;
         private void Start()
         {
@@ -52,15 +53,48 @@ namespace RPG.Stats
         }
         public float GetStat(Stat stat)
         {
+            return (GetBaseStat(stat) + GetAdditiveModifier(stat)) * (1 + GetPercentageModifier(stat)/100);
+        }
+
+        private float GetPercentageModifier(Stat stat)
+        {
+            float percentageModifier = 0f;
+            foreach (IModifierProvider provider in GetComponents<IModifierProvider>())
+            {
+                foreach (float percentageBonus in provider.GetPercentageModifier(stat))
+                {
+                    percentageModifier += percentageBonus;
+                }
+            }
+            return percentageModifier;
+        }
+
+        private float GetBaseStat(Stat stat)
+        {
             return progression.GetStat(stat, characterClass, currentLevel);
         }
-        public int CalculateLevel()
+
+        private float GetAdditiveModifier(Stat stat)
+        {
+            if (!shouldUseModifiers) return 0;
+            float damage = 0f;
+            foreach(IModifierProvider provider in GetComponents<IModifierProvider>())
+            {
+                foreach (float modifier in provider.GetAdditiveModifer(stat))
+                {
+                    damage += modifier;
+                }
+            }
+            return damage;
+        }
+
+        private int CalculateLevel()
         {
             Experience exp = GetComponent<Experience>();
             float currentExp = exp.GetExperiencePoints();
             if (exp == null) return startLevel;
             int levelProgression = progression.GetLevels(Stat.ExperienceToLevel, characterClass);
-            for(int levels = 1; levels <= levelProgression; levels++)
+            for(int levels = 1; levels < levelProgression; levels++)
             {
                 float expToLevel = progression.GetStat(Stat.ExperienceToLevel, characterClass, levels);
                 if (currentExp < expToLevel)
@@ -68,7 +102,7 @@ namespace RPG.Stats
                     return levels;
                 }
             }
-            return levelProgression + 1;
+            return levelProgression;
         }
     }
 }
