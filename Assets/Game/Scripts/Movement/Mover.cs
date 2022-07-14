@@ -15,13 +15,15 @@ namespace RPG.Movement
         Animator animator;
         Health health;
 
-        void Start()
+        private void Awake()
         {
             agent = this.gameObject.GetComponent<NavMeshAgent>();
             animator = this.gameObject.GetComponent<Animator>();
             health = this.gameObject.GetComponent<Health>();
         }
-
+        void Start()
+        {
+        }
         // Update is called once per frame
         void Update()
         {
@@ -62,9 +64,9 @@ namespace RPG.Movement
         public void RestoreState(object state)
         {
             SerializableVector3 sz = (SerializableVector3)state;
-            GetComponent<NavMeshAgent>().enabled = false;
+            agent.enabled = false;
             this.transform.position = sz.GetVector3();
-            GetComponent<NavMeshAgent>().enabled = true;
+            agent.enabled = true;
             GetComponent<ActionScheduler>().CancelCurrentAction();
         }
     }
