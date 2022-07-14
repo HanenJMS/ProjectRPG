@@ -29,13 +29,15 @@ namespace RPG.Control
 
         float timeSinceLastSawPlayer = Mathf.Infinity;
         float timeSinceArrivedAtWaypoint = Mathf.Infinity;
-        
-        private void Start()
+        private void Awake()
         {
-            guardPosition = this.gameObject.transform.position;
             fighter = this.gameObject.GetComponent<Fighter>();
             health = this.gameObject.GetComponent<Health>();
             mover = this.gameObject.GetComponent<Mover>();
+        }
+        private void Start()
+        {
+            guardPosition = this.gameObject.transform.position;
             setPlayer();
         }
         private void Update()

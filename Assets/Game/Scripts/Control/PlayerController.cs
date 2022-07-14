@@ -13,10 +13,14 @@ namespace RPG.Control
     {
         Health health;
         UnitCore unit;
-        private void Start()
+        private void Awake()
         {
             health = this.gameObject.GetComponent<Health>();
             unit = this.gameObject.GetComponent<UnitCore>();
+        }
+        private void Start()
+        {
+            
         }
         private static Ray GetMouseRay()
         {

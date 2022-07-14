@@ -13,12 +13,15 @@ public class PlayerCamera:MonoBehaviour
 	private float yRotation;
 
 	private SuperCharacterController controller;
-
-	private void Start()
-	{
+    private void Awake()
+    {
 		input = PlayerTarget.GetComponent<PlayerInputController>();
 		machine = PlayerTarget.GetComponent<PlayerMachine>();
 		controller = PlayerTarget.GetComponent<SuperCharacterController>();
+	}
+
+    private void Start()
+	{
 		target = PlayerTarget.transform;
 	}
 

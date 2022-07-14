@@ -9,10 +9,27 @@ namespace RPG.Stats
     public class DisplayLevel : MonoBehaviour
     {
         BaseStats stats;
-        private void Start()
+        private void Awake()
         {
             stats = GameObject.FindGameObjectWithTag("Player").GetComponent<BaseStats>();
-            stats.OnLevelUp += UpdateLevelDisplay;
+        }
+        private void OnEnable()
+        {
+            if(stats != null)
+            {
+                stats.OnLevelUp += UpdateLevelDisplay;
+            }
+        }
+        private void OnDisable()
+        {
+            if (stats != null)
+            {
+                stats.OnLevelUp -= UpdateLevelDisplay;
+            }
+        }
+        private void Start()
+        {
+            
             UpdateLevelDisplay();
         }
         private void UpdateLevelDisplay()

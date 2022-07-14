@@ -12,11 +12,15 @@ namespace RPG.Attributes
         float maxWidthScale = 0.1f;
         Health health;
         Color defaultColor;
-        private void Start()
+        private void Awake()
         {
             healthBar = GetComponent<Transform>();
             health = GetComponentInParent<Health>();
             defaultColor = gameObject.GetComponent<MeshRenderer>().material.color;
+        }
+        private void Start()
+        {
+
         }
         private void Update()
         {

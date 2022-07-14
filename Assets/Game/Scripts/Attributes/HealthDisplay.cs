@@ -7,7 +7,7 @@ namespace RPG.Attributes
     public class HealthDisplay : MonoBehaviour //Consider extending this into the UI system
     {
         Health health;
-        private void Start()
+        private void Awake()
         {
             health = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
         }
