@@ -1,8 +1,4 @@
 using RPG.Attributes;
-using RPG.Core;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -27,7 +23,7 @@ namespace RPG.Combat
         void Update()
         {
             if (target == null) return;
-            if(isHoming && !target.IsDead())
+            if (isHoming && !target.IsDead())
             {
                 transform.LookAt(GetAimLocation());
             }

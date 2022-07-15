@@ -3,9 +3,6 @@ using RPG.Attributes;
 using RPG.Combat;
 using RPG.Core;
 using RPG.Movement;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Control
@@ -17,10 +14,10 @@ namespace RPG.Control
         [SerializeField] float patrolHoldTime = 5f;
         [SerializeField] PatrolPath patrolPath;
         [SerializeField] float waypointTolerence = 1f;
-        [Range(0,1)]
+        [Range(0, 1)]
         [SerializeField] float patrolSpeedFraction = 0.2f;
 
-        int currentPosition = 0; 
+        int currentPosition = 0;
         LazyValue<Vector3> guardPosition;
         Fighter fighter;
         Health health;
@@ -57,7 +54,7 @@ namespace RPG.Control
         {
             if (IsWithinDistance() && fighter.CanAttack(player.gameObject))
             {
-                
+
                 AttackBehaviour();
                 print(gameObject.name + " is attacking : " + player.gameObject.name);
             }
@@ -68,7 +65,7 @@ namespace RPG.Control
             }
             else
             {
-                
+
                 PatrolBehaviour();
             }
             UpdateTimers();
@@ -93,12 +90,12 @@ namespace RPG.Control
                 }
                 nextPosition = GetCurrentWaypoint();
             }
-            if(timeSinceArrivedAtWaypoint > patrolHoldTime)
+            if (timeSinceArrivedAtWaypoint > patrolHoldTime)
             {
                 mover.StartMoveAction(nextPosition, patrolSpeedFraction);
             }
-            
-            
+
+
         }
 
         private bool AtWaypoint()
@@ -106,7 +103,7 @@ namespace RPG.Control
             float distanceToWaypoint = Vector3.Distance(transform.position, GetCurrentWaypoint());
             return distanceToWaypoint < waypointTolerence;
         }
-        
+
         private void CycleWaypoint()
         {
             currentPosition = patrolPath.GetNextIndex(currentPosition);

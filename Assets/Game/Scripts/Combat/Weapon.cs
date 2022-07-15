@@ -1,5 +1,4 @@
 using RPG.Attributes;
-using RPG.Core;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -30,7 +29,7 @@ namespace RPG.Combat
             {
                 animator.runtimeAnimatorController = animatorOverride;
             }
-            else if(overrideController != null)
+            else if (overrideController != null)
             {
                 animator.runtimeAnimatorController = animatorOverride.runtimeAnimatorController;
             }
@@ -40,7 +39,7 @@ namespace RPG.Combat
         private static void DestroyOldWeapon(Transform rightHand, Transform leftHand)
         {
             Transform oldWeapon = rightHand.Find(weaponName);
-            if(oldWeapon == null)
+            if (oldWeapon == null)
             {
                 oldWeapon = leftHand.Find(weaponName);
             }
@@ -66,7 +65,7 @@ namespace RPG.Combat
 
         public bool HasProjectile()
         {
-            return projectile != null;        
+            return projectile != null;
         }
         public void LaunchProjectile(Transform rightHand, Transform leftHand, Health target, GameObject Instigator, float calculatedDamage)
         {

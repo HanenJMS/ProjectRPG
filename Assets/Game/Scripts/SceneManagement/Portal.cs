@@ -1,7 +1,4 @@
-using RPG.Saving;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
@@ -22,7 +19,7 @@ namespace RPG.SceneManagement
         [SerializeField] float fadeWaitTime = 0.5f;
         private void OnTriggerEnter(Collider other)
         {
-            if(other.gameObject.name == "Player")
+            if (other.gameObject.name == "Player")
             {
                 StartCoroutine(Transition());
             }
@@ -31,7 +28,7 @@ namespace RPG.SceneManagement
         {
             Fader fader = FindObjectOfType<Fader>();
             SavingWrapper savingWrapper = FindObjectOfType<SavingWrapper>();
-            
+
             DontDestroyOnLoad(gameObject);
             yield return fader.FadeOut(fadeOutTime);
             savingWrapper.Save();
@@ -48,7 +45,7 @@ namespace RPG.SceneManagement
 
         private Portal GetOtherPortal()
         {
-            foreach(Portal portal in FindObjectsOfType<Portal>())
+            foreach (Portal portal in FindObjectsOfType<Portal>())
             {
                 if (portal == this) continue;
                 if (this.destination != portal.destination) continue;
@@ -59,9 +56,9 @@ namespace RPG.SceneManagement
 
         private void UpdatePlayer(Portal otherPortal)
         {
-            foreach(GameObject player in GameObject.FindGameObjectsWithTag("unit"))
+            foreach (GameObject player in GameObject.FindGameObjectsWithTag("unit"))
             {
-                if(player.name == "Player")
+                if (player.name == "Player")
                 {
                     player.GetComponent<NavMeshAgent>().enabled = false;
                     player.GetComponent<NavMeshAgent>().Warp(otherPortal.spawnPoint.position);

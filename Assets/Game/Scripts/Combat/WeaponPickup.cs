@@ -1,7 +1,5 @@
 using RPG.Control;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -12,7 +10,7 @@ namespace RPG.Combat
         [SerializeField] float respawnTime = 5f;
         private void OnTriggerEnter(Collider other)
         {
-            if(other.GetComponent<Fighter>() != null)
+            if (other.GetComponent<Fighter>() != null)
             {
                 Pickup(other.GetComponent<Fighter>());
             }
@@ -33,7 +31,7 @@ namespace RPG.Combat
         private void ShowPickup(bool shouldShow)
         {
             GetComponent<SphereCollider>().enabled = shouldShow;
-            foreach(Transform child in transform)
+            foreach (Transform child in transform)
             {
                 child.gameObject.SetActive(shouldShow);
             }
@@ -41,7 +39,7 @@ namespace RPG.Combat
 
         public bool HandleRayCast(PlayerController callingController)
         {
-            if(Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 Pickup(callingController.GetComponent<Fighter>());
             }

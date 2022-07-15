@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Core
@@ -9,9 +7,9 @@ namespace RPG.Core
         [SerializeField] GameObject targetToDestroy = null;
         private void Update()
         {
-            if(!GetComponent<ParticleSystem>().IsAlive())
+            if (!GetComponent<ParticleSystem>().IsAlive())
             {
-                if(targetToDestroy != null)
+                if (targetToDestroy != null)
                 {
                     Destroy(targetToDestroy);
                 }

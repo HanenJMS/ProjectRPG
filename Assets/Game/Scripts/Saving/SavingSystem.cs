@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
@@ -51,7 +50,7 @@ namespace RPG.Saving
         private Dictionary<string, object> LoadFile(string saveFile)
         {
             string path = GetPathFromSaveFile(saveFile);
-            if(!File.Exists(path))
+            if (!File.Exists(path))
             {
                 return new Dictionary<string, object>();
             }
@@ -63,7 +62,7 @@ namespace RPG.Saving
         }
         private void CaptureState(Dictionary<string, object> state)
         {
-            foreach(SaveableEntity saveable in FindObjectsOfType<SaveableEntity>())
+            foreach (SaveableEntity saveable in FindObjectsOfType<SaveableEntity>())
             {
                 state[saveable.GetUniqueIdentifier()] = saveable.CaptureState();
             }
@@ -74,7 +73,7 @@ namespace RPG.Saving
             foreach (SaveableEntity saveable in FindObjectsOfType<SaveableEntity>())
             {
                 string id = saveable.GetUniqueIdentifier();
-                if(state.ContainsKey(id))
+                if (state.ContainsKey(id))
                 {
                     saveable.RestoreState(state[id]);
                 }

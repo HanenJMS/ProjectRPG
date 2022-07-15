@@ -17,7 +17,7 @@ namespace RPG.Saving
         public object CaptureState()
         {
             Dictionary<string, object> state = new Dictionary<string, object>();
-            foreach(ISaveable saveable in GetComponents<ISaveable>())
+            foreach (ISaveable saveable in GetComponents<ISaveable>())
             {
                 state[saveable.GetType().ToString()] = saveable.CaptureState();
             }
@@ -29,7 +29,7 @@ namespace RPG.Saving
             foreach (ISaveable saveable in GetComponents<ISaveable>())
             {
                 string typeString = saveable.GetType().ToString();
-                if(stateDict.ContainsKey(typeString))
+                if (stateDict.ContainsKey(typeString))
                 {
                     saveable.RestoreState(stateDict[typeString]);
                 }
@@ -53,7 +53,7 @@ namespace RPG.Saving
         private bool IsUnique(string candidate)
         {
             if (!globalLookup.ContainsKey(candidate)) return true;
-            if(globalLookup[candidate] == this) return true;
+            if (globalLookup[candidate] == this) return true;
             if (globalLookup[candidate] == null)
             {
                 globalLookup.Remove(candidate);

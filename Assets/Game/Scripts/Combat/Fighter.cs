@@ -4,7 +4,6 @@ using RPG.Core;
 using RPG.Movement;
 using RPG.Saving;
 using RPG.Stats;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,9 +11,9 @@ namespace RPG.Combat
 {
     public class Fighter : MonoBehaviour, IAction, ISaveable, IModifierProvider
     {
-        
+
         [SerializeField] float timeBetweenAttacks = 1f;
-        
+
         [SerializeField] Transform rightHandTransform = null;
         [SerializeField] Transform leftHandTransform = null;
         [SerializeField] Weapon defaultWeapon = null;
@@ -26,18 +25,10 @@ namespace RPG.Combat
         {
             currentWeapon = new LazyValue<Weapon>(SetUpDefaultWeapon);
         }
-
-        private Weapon SetUpDefaultWeapon()
-        {
-            AttachWeapon(defaultWeapon);
-            return defaultWeapon;
-        }
-
         private void Start()
         {
             currentWeapon.ForceInit();
         }
-
         private void Update()
         {
             timeSinceLastAttack += Time.deltaTime;
@@ -57,32 +48,13 @@ namespace RPG.Combat
                 }
             }
         }
-        public IEnumerable<float> GetAdditiveModifer(Stat stat)
+        //Initialization methods
+        private Weapon SetUpDefaultWeapon()
         {
-            if(stat == Stat.Damage)
-            {
-                yield return currentWeapon.value.GetDamageOutput();
-            }
+            AttachWeapon(defaultWeapon);
+            return defaultWeapon;
         }
-        public IEnumerable<float> GetPercentageModifier(Stat stat)
-        {
-            if(stat == Stat.Damage)
-            {
-                yield return currentWeapon.value.GetPercentageBonus();
-            }
-        }
-        public void EquipWeapon(Weapon weapon)
-        {
-            currentWeapon.value = weapon;
-            AttachWeapon(weapon);
-        }
-
-        private void AttachWeapon(Weapon weapon)
-        {
-            Animator animator = GetComponent<Animator>();
-            weapon.Spawn(rightHandTransform, leftHandTransform, animator);
-        }
-
+        //Combat Interaction
         public bool CanAttack(GameObject combatTarget)
         {
             if (combatTarget == null) { return false; }
@@ -94,11 +66,42 @@ namespace RPG.Combat
             GetComponent<ActionScheduler>().StartAction(this);
             target = combatTarget.GetComponent<Health>();
         }
+        private bool GetIsInRange()
+        {
+            return Vector3.Distance(transform.position, target.transform.position) < currentWeapon.value.GetRange();
+        }
         public void Cancel()
         {
             StopAttackAnimation();
             target = null;
         }
+        //Combat Modifiers
+        public IEnumerable<float> GetAdditiveModifer(Stat stat)
+        {
+            if (stat == Stat.Damage)
+            {
+                yield return currentWeapon.value.GetDamageOutput();
+            }
+        }
+        public IEnumerable<float> GetPercentageModifier(Stat stat)
+        {
+            if (stat == Stat.Damage)
+            {
+                yield return currentWeapon.value.GetPercentageBonus();
+            }
+        }
+        //Weapon Interaction
+        public void EquipWeapon(Weapon weapon)
+        {
+            currentWeapon.value = weapon;
+            AttachWeapon(weapon);
+        }
+        private void AttachWeapon(Weapon weapon)
+        {
+            Animator animator = GetComponent<Animator>();
+            weapon.Spawn(rightHandTransform, leftHandTransform, animator);
+        }
+        //Fighter Behaviour
         private void FaceTarget()
         {
             this.gameObject.transform.LookAt(target.transform);
@@ -122,6 +125,7 @@ namespace RPG.Combat
             }
             isAttacking = false;
         }
+        //Fighter animator behaviour
         private void StartAttackAnimation()
         {
             GetComponent<Animator>().ResetTrigger("stopAttack");
@@ -132,11 +136,7 @@ namespace RPG.Combat
             GetComponent<Animator>().ResetTrigger("attack");
             GetComponent<Animator>().SetTrigger("stopAttack");
         }
-     
-        private bool GetIsInRange()
-        {
-            return Vector3.Distance(transform.position, target.transform.position) < currentWeapon.value.GetRange();
-        }
+
         //Animation Event
         //animation event is not referenced but triggered with the animation
         void Hit()
@@ -156,12 +156,11 @@ namespace RPG.Combat
         {
             Hit();
         }
-
+        //Saving Interface
         public object CaptureState()
         {
             return currentWeapon.value.name;
         }
-
         public void RestoreState(object state)
         {
             string weaponName = (string)state;

@@ -1,6 +1,5 @@
 using RPG.Saving;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.SceneManagement
@@ -31,12 +30,12 @@ namespace RPG.SceneManagement
             {
                 Load();
             }
-            if(Input.GetKeyDown(KeyCode.F3))
+            if (Input.GetKeyDown(KeyCode.F3))
             {
                 Delete();
             }
         }
-        
+
         public void Load()
         {
             GetComponent<SavingSystem>().Load(defaultSaveFile);

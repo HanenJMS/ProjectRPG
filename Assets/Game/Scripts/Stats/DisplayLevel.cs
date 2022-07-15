@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -15,7 +13,7 @@ namespace RPG.Stats
         }
         private void OnEnable()
         {
-            if(stats != null)
+            if (stats != null)
             {
                 stats.OnLevelUp += UpdateLevelDisplay;
             }
@@ -29,7 +27,6 @@ namespace RPG.Stats
         }
         private void Start()
         {
-            
             UpdateLevelDisplay();
         }
         private void UpdateLevelDisplay()

@@ -1,19 +1,16 @@
-
 using GameDevTV.Utils;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Stats
 {
     public class BaseStats : MonoBehaviour
     {
-        [Range(1,99)]
+        [Range(1, 99)]
         [SerializeField] int startLevel = 1;
         [SerializeField] CharacterClass characterClass;
         [SerializeField] Progression progression = null;
-        
+
         [SerializeField] GameObject levelUpParticleEffect;
         LazyValue<int> currentLevel;
         [SerializeField] bool shouldUseModifiers = false;
@@ -31,7 +28,7 @@ namespace RPG.Stats
         }
         private void OnEnable()
         {
-            if(exp != null)
+            if (exp != null)
             {
                 exp.OnExperenceGained += UpdateLevel;
             }
@@ -46,7 +43,7 @@ namespace RPG.Stats
         private void UpdateLevel()
         {
             int newLevel = CalculateLevel();
-            if(newLevel > currentLevel.value)
+            if (newLevel > currentLevel.value)
             {
                 currentLevel.value = newLevel;
                 LevelUpEffect();
@@ -65,7 +62,7 @@ namespace RPG.Stats
         }
         public float GetStat(Stat stat)
         {
-            return (GetBaseStat(stat) + GetAdditiveModifier(stat)) * (1 + GetPercentageModifier(stat)/100);
+            return (GetBaseStat(stat) + GetAdditiveModifier(stat)) * (1 + GetPercentageModifier(stat) / 100);
         }
 
         private float GetPercentageModifier(Stat stat)
@@ -90,7 +87,7 @@ namespace RPG.Stats
         {
             if (!shouldUseModifiers) return 0;
             float damage = 0f;
-            foreach(IModifierProvider provider in GetComponents<IModifierProvider>())
+            foreach (IModifierProvider provider in GetComponents<IModifierProvider>())
             {
                 foreach (float modifier in provider.GetAdditiveModifer(stat))
                 {
@@ -106,7 +103,7 @@ namespace RPG.Stats
             float currentExp = exp.GetExperiencePoints();
             if (exp == null) return startLevel;
             int levelProgression = progression.GetLevels(Stat.ExperienceToLevel, characterClass);
-            for(int levels = 1; levels < levelProgression; levels++)
+            for (int levels = 1; levels < levelProgression; levels++)
             {
                 float expToLevel = progression.GetStat(Stat.ExperienceToLevel, characterClass, levels);
                 if (currentExp < expToLevel)
