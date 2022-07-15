@@ -1,21 +1,20 @@
-using UnityEngine;
 using RPG.Attributes;
-
+using RPG.Control;
+using UnityEngine;
 namespace RPG.Combat
 {
     [RequireComponent(typeof(Health))]
-    public class CombatTarget : MonoBehaviour
+    public class CombatTarget : MonoBehaviour, IRaycastable
     {
-        // Start is called before the first frame update
-        void Start()
+        public bool HandleRayCast(PlayerController callingController)
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            if (!callingController.GetComponent<Fighter>().CanAttack(this.gameObject)) return false;
+            if (Input.GetMouseButton(1))
+            {
+                callingController.GetComponent<Fighter>().Attack(this.gameObject);
+                print($"{gameObject.name} is currently attack {this.gameObject.name}.");
+            }
+            return true;
         }
     }
 }

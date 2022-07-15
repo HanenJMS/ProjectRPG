@@ -48,10 +48,28 @@ namespace RPG.Control
                 SetCursor(CursorType.None);
                 return;
             }
-            if (InteractWithCombat()) return;
+            if (InteractWithComponent()) return;
             if (InteractWithMovement()) return;
             SetCursor(CursorType.None);
             print($"{gameObject.name} is currently doing nothing.");
+        }
+
+        private bool InteractWithComponent()
+        {
+            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
+            foreach (RaycastHit hit in hits)
+            {
+                IRaycastable[] raycastables = hit.transform.GetComponents<IRaycastable>();
+                foreach (IRaycastable raycastable in raycastables)
+                {
+                    if (raycastable == null) continue;
+                    if (raycastable.HandleRayCast(this))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
         private bool IneteractWithUI()
@@ -63,29 +81,6 @@ namespace RPG.Control
             }
             return false;
         }
-
-        private bool InteractWithCombat()
-        {
-            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
-            foreach (RaycastHit hit in hits)
-            {
-                CombatTarget target = hit.transform.GetComponent<CombatTarget>();
-                if (target == null) continue;
-                if (!GetComponent<Fighter>().CanAttack(target.gameObject)) continue;
-                if (target != null)
-                {
-                    if (Input.GetMouseButton(1))
-                    {
-                        GetComponent<Fighter>().Attack(target.gameObject);
-                        print($"{gameObject.name} is currently attack {target.name}.");
-                    }
-                    SetCursor(CursorType.Combat);
-                    return true;
-                }
-            }
-            return false;
-        }
-
         private void SetCursor(CursorType type)
         {
             CursorMapping mapping = GetCursorMapping(type);
