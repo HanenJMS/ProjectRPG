@@ -1,3 +1,4 @@
+using GameDevTV.Utils;
 using RPG.Attributes;
 using RPG.Combat;
 using RPG.Core;
@@ -20,7 +21,7 @@ namespace RPG.Control
         [SerializeField] float patrolSpeedFraction = 0.2f;
 
         int currentPosition = 0; 
-        Vector3 guardPosition;
+        LazyValue<Vector3> guardPosition;
         Fighter fighter;
         Health health;
         UnitCore player;
@@ -34,11 +35,16 @@ namespace RPG.Control
             fighter = this.gameObject.GetComponent<Fighter>();
             health = this.gameObject.GetComponent<Health>();
             mover = this.gameObject.GetComponent<Mover>();
+            guardPosition = new LazyValue<Vector3>(GetGuardPosition);
         }
         private void Start()
         {
-            guardPosition = this.gameObject.transform.position;
+            guardPosition.ForceInit();
             setPlayer();
+        }
+        private Vector3 GetGuardPosition()
+        {
+            return transform.position;
         }
         private void Update()
         {
@@ -77,7 +83,7 @@ namespace RPG.Control
 
         void PatrolBehaviour()
         {
-            Vector3 nextPosition = guardPosition;
+            Vector3 nextPosition = guardPosition.value;
             if (patrolPath != null)
             {
                 if (AtWaypoint())
