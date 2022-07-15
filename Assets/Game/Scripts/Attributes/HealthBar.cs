@@ -9,15 +9,17 @@ namespace RPG.Attributes
         float maxWidthScale = 0.1f;
         Health health;
         Color defaultColor;
+        Camera camera;
         private void Awake()
         {
             healthBar = GetComponent<Transform>();
             health = GetComponentInParent<Health>();
             defaultColor = gameObject.GetComponent<MeshRenderer>().material.color;
+            
         }
         private void Start()
         {
-
+            camera = Camera.main;
         }
         private void Update()
         {
@@ -38,6 +40,7 @@ namespace RPG.Attributes
             {
                 gameObject.SetActive(false);
             }
+            healthBar.LookAt(camera.transform);
         }
 
         private Vector3 GetHealthSize(float health)

@@ -180,7 +180,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c43ccab57a580844a30f26f230e1375, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: -1
   regenerationPercentage: 70
 --- !u!114 &730767420
 MonoBehaviour:
@@ -268,7 +267,6 @@ MonoBehaviour:
   characterClass: 0
   progression: {fileID: 11400000, guid: 56c4f176764b95c46ad7cc29fda5a027, type: 2}
   levelUpParticleEffect: {fileID: 5818917720675977217, guid: a6dac59ff67967246baa6b528d3c7d30, type: 3}
-  currentLevel: 0
   shouldUseModifiers: 1
 --- !u!114 &2107133716735611839
 MonoBehaviour:
@@ -336,14 +334,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4607796869240909722, guid: b5f1a425564c45d4aa87646b2e271ec5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7902635590007176305, guid: b5f1a425564c45d4aa87646b2e271ec5, type: 3}
-      propertyPath: m_LightProbeUsage
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7902635590007176305, guid: b5f1a425564c45d4aa87646b2e271ec5, type: 3}
-      propertyPath: m_ReflectionProbeUsage
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
