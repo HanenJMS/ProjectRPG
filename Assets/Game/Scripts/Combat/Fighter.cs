@@ -135,7 +135,7 @@ namespace RPG.Combat
      
         private bool GetIsInRange()
         {
-            return Vector3.Distance(transform.position, target.transform.position) < currentWeapon.GetRange();
+            return Vector3.Distance(transform.position, target.transform.position) < currentWeapon.value.GetRange();
         }
         //Animation Event
         //animation event is not referenced but triggered with the animation
