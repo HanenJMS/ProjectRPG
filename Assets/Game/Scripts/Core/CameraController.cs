@@ -1,7 +1,4 @@
-using RPG.Combat;
 using RPG.Saving;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Core
@@ -28,9 +25,6 @@ namespace RPG.Core
         [SerializeField] Vector3 dragCurrentPosition;
         [SerializeField] Vector3 rotateStartPosition;
         [SerializeField] Vector3 rotateCurrentPosition;
-        //methods
-        //HandleMovementInput(); Takes in user input for moving the camera rig.
-
         private void Start()
         {
             instance = this;
@@ -41,27 +35,45 @@ namespace RPG.Core
 
         private void Update()
         {
-            if(followTransform != null)
+            if (followTransform != null)
             {
                 transform.position = followTransform.position;
+                HandleCameraZoomBy();
             }
             else
             {
-                HandleMouseInput();
-                HandleMovementInput();
-                cameraMover();
+                HandleCameraMovementBy();
+                HandleCameraRotationBy();
+                HandleCameraZoomBy();
             }
-            if(Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
                 newPosition = transform.position;
                 newRotation = transform.rotation;
-                newZoom = cameraTransform.localPosition;
                 followTransform = null;
             }
         }
-        void HandleMovementInput()
+        private void HandleCameraMovementBy()
         {
-            if(Input.GetKey(KeyCode.LeftShift))
+            MouseMovementInput();
+            KeyboardMovementInput();
+            transform.position = Vector3.Lerp(transform.position, newPosition, movementTime * Time.deltaTime);
+        }
+        private void HandleCameraRotationBy()
+        {
+            MouseRotationInput();
+            KeyboardRotationInput();
+            transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, movementTime * Time.deltaTime);
+        }
+        private void HandleCameraZoomBy()
+        {
+            MouseZoom();
+            KeyboardZoom();
+            cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, movementTime * Time.deltaTime);
+        }
+        private void KeyboardMovementInput()
+        {
+            if (Input.GetKey(KeyCode.LeftShift))
             {
                 movementSpeed = fastSpeed;
             }
@@ -70,11 +82,10 @@ namespace RPG.Core
                 movementSpeed = normalSpeed;
             }
 
-            if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
             {
                 newPosition += (transform.forward * movementSpeed);
             }
-
             if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
             {
                 newPosition += (transform.forward * -movementSpeed);
@@ -87,42 +98,16 @@ namespace RPG.Core
             {
                 newPosition += (transform.right * -movementSpeed);
             }
-
-            if (Input.GetKey(KeyCode.Q))
-            {
-                newRotation *= Quaternion.Euler(Vector3.up * rotationAmount);
-            }
-
-            if (Input.GetKey(KeyCode.E))
-            {
-                newRotation *= Quaternion.Euler(Vector3.up * -rotationAmount);
-            }
-
-            if(Input.GetKey(KeyCode.R))
-            {
-                newZoom += zoomAmount;
-            }
-
-            if(Input.GetKey(KeyCode.F))
-            {
-                newZoom += -zoomAmount;
-            }
-
-            
         }
-        void HandleMouseInput()
+        private void MouseMovementInput()
         {
-            if(Input.mouseScrollDelta.y != 0)
-            {
-                newZoom += Input.mouseScrollDelta.y * zoomAmount;
-            }
-            if(Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 Plane plane = new Plane(Vector3.up, Vector3.zero);
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
                 float entry;
-                if (plane.Raycast(ray,out entry))
+                if (plane.Raycast(ray, out entry))
                 {
                     dragStartPosition = ray.GetPoint(entry);
                 }
@@ -141,13 +126,26 @@ namespace RPG.Core
                     newPosition = transform.position + dragStartPosition - dragCurrentPosition;
                 }
             }
+        }
+        private void KeyboardRotationInput()
+        {
+            if (Input.GetKey(KeyCode.Q))
+            {
+                newRotation *= Quaternion.Euler(Vector3.up * rotationAmount);
+            }
 
+            if (Input.GetKey(KeyCode.E))
+            {
+                newRotation *= Quaternion.Euler(Vector3.up * -rotationAmount);
+            }
+        }
+        private void MouseRotationInput()
+        {
             if (Input.GetMouseButtonDown(2))
             {
                 rotateStartPosition = Input.mousePosition;
             }
-
-            if(Input.GetMouseButton(2))
+            if (Input.GetMouseButton(2))
             {
                 rotateCurrentPosition = Input.mousePosition;
 
@@ -156,19 +154,30 @@ namespace RPG.Core
 
                 newRotation *= Quaternion.Euler(Vector3.up * (-difference.x / 5f));
             }
-        }
-        private void cameraMover()
-        {
-            transform.position = Vector3.Lerp(transform.position, newPosition, movementTime * Time.deltaTime);
-            transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, movementTime * Time.deltaTime);
-            cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, newZoom, movementTime * Time.deltaTime);
-        }
 
+        }
+        private void MouseZoom()
+        {
+            if (Input.mouseScrollDelta.y != 0)
+            {
+                newZoom += Input.mouseScrollDelta.y * zoomAmount;
+            }
+        }
+        private void KeyboardZoom()
+        {
+            if (Input.GetKey(KeyCode.R))
+            {
+                newZoom += zoomAmount;
+            }
+            if (Input.GetKey(KeyCode.F))
+            {
+                newZoom += -zoomAmount;
+            }
+        }
         public object CaptureState()
         {
             return followTransform;
         }
-
         public void RestoreState(object state)
         {
             Transform follow = (Transform)state;
