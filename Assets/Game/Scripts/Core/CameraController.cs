@@ -32,10 +32,9 @@ namespace RPG.Core
             newRotation = transform.rotation;
             newZoom = cameraTransform.localPosition;
         }
-
         private void Update()
         {
-            if (followTransform != null)
+            if (HasFollowTarget())
             {
                 transform.position = followTransform.position;
                 HandleCameraZoomBy();
@@ -52,6 +51,10 @@ namespace RPG.Core
                 newRotation = transform.rotation;
                 followTransform = null;
             }
+        }
+        private bool HasFollowTarget()
+        {
+            return followTransform != null;
         }
         private void HandleCameraMovementBy()
         {
@@ -156,13 +159,6 @@ namespace RPG.Core
             }
 
         }
-        private void MouseZoom()
-        {
-            if (Input.mouseScrollDelta.y != 0)
-            {
-                newZoom += Input.mouseScrollDelta.y * zoomAmount;
-            }
-        }
         private void KeyboardZoom()
         {
             if (Input.GetKey(KeyCode.R))
@@ -172,6 +168,13 @@ namespace RPG.Core
             if (Input.GetKey(KeyCode.F))
             {
                 newZoom += -zoomAmount;
+            }
+        }
+        private void MouseZoom()
+        {
+            if (Input.mouseScrollDelta.y != 0)
+            {
+                newZoom += Input.mouseScrollDelta.y * zoomAmount;
             }
         }
         public object CaptureState()

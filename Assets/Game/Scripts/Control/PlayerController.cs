@@ -1,12 +1,7 @@
 using RPG.Attributes;
-using RPG.Combat;
 using RPG.Core;
 using RPG.Movement;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.EventSystems;
 
 namespace RPG.Control
@@ -29,14 +24,6 @@ namespace RPG.Control
             health = this.gameObject.GetComponent<Health>();
             unit = this.gameObject.GetComponent<UnitCore>();
         }
-        private void Start()
-        {
-            
-        }
-        private static Ray GetMouseRay()
-        {
-            return Camera.main.ScreenPointToRay(Input.mousePosition);
-        }
         private void Update()
         {
             if (IneteractWithUI()) return;
@@ -50,7 +37,15 @@ namespace RPG.Control
             SetCursor(CursorType.None);
             print($"{gameObject.name} is currently doing nothing.");
         }
-
+        private bool IneteractWithUI()
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                SetCursor(CursorType.UI);
+                return true;
+            }
+            return false;
+        }
         private bool InteractWithComponent()
         {
             RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
@@ -69,32 +64,6 @@ namespace RPG.Control
             }
             return false;
         }
-
-        private bool IneteractWithUI()
-        {
-            if(EventSystem.current.IsPointerOverGameObject())
-            {
-                SetCursor(CursorType.UI);
-                return true;
-            }
-            return false;
-        }
-        private void SetCursor(CursorType type)
-        {
-            CursorMapping mapping = GetCursorMapping(type);
-            Cursor.SetCursor(mapping.texture, mapping.hotspot, CursorMode.Auto);
-        }
-        private CursorMapping GetCursorMapping(CursorType type)
-        {
-            foreach(CursorMapping mapping in cursorMappings)
-            {
-                if(mapping.type == type)
-                {
-                    return mapping;
-                }
-            }
-            return cursorMappings[0];
-        }
         private bool InteractWithMovement()
         {
             RaycastHit hit;
@@ -110,6 +79,27 @@ namespace RPG.Control
                 return true;
             }
             return false;
+        }
+        private void SetCursor(CursorType type)
+        {
+            CursorMapping mapping = GetCursorMapping(type);
+            Cursor.SetCursor(mapping.texture, mapping.hotspot, CursorMode.Auto);
+        }
+        private CursorMapping GetCursorMapping(CursorType type)
+        {
+            foreach (CursorMapping mapping in cursorMappings)
+            {
+                if (mapping.type == type)
+                {
+                    return mapping;
+                }
+            }
+            return cursorMappings[0];
+        }
+
+        private static Ray GetMouseRay()
+        {
+            return Camera.main.ScreenPointToRay(Input.mousePosition);
         }
         private void OnMouseDown()
         {
