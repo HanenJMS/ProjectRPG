@@ -92,6 +92,9 @@ GameObject:
   - component: {fileID: 2926208818847316189}
   - component: {fileID: 386290364512705307}
   - component: {fileID: 6869368996886943310}
+  - component: {fileID: 8986285369443209960}
+  - component: {fileID: 5860576370810522662}
+  - component: {fileID: 8483996237870632504}
   m_Layer: 5
   m_Name: Damage
   m_TagString: Untagged
@@ -116,7 +119,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 2.3}
+  m_AnchoredPosition: {x: 0, y: 2.300003}
   m_SizeDelta: {x: 1.2839, y: 0.2977}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &3257012922546848887
@@ -162,7 +165,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 2500
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &386290364512705307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,7 +182,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
 --- !u!114 &6869368996886943310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,3 +195,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2840931786a91574fb7799ee7f521ee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!111 &8986285369443209960
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3625210331127111241}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: cb08f8d828385c94bbac55eb11d3359e, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: cb08f8d828385c94bbac55eb11d3359e, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
+--- !u!225 &5860576370810522662
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3625210331127111241}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &8483996237870632504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3625210331127111241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a68b2ee22f030b1429fde998e8ca37cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageText: {fileID: 5010057972398348972}
