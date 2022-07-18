@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace RPG.Attributes
 {
-    public class HealthBar : MonoBehaviour
+    public class HealthBarOld : MonoBehaviour
     {
         Transform healthBar;
         float maxScale = 3f;

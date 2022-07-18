@@ -1,7 +1,9 @@
 using RPG.Attributes;
 using RPG.Core;
 using RPG.Movement;
+using System;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.EventSystems;
 
 namespace RPG.Control
@@ -19,6 +21,8 @@ namespace RPG.Control
             public Vector2 hotspot;
         }
         [SerializeField] CursorMapping[] cursorMappings = null;
+        [SerializeField] float maxNavmeshProjectionDistance = 1f;
+        [SerializeField] float maxNavPathLength = 100f;
         private void Awake()
         {
             health = this.gameObject.GetComponent<Health>();
@@ -48,7 +52,7 @@ namespace RPG.Control
         }
         private bool InteractWithComponent()
         {
-            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
+            RaycastHit[] hits = RaycastAllSorted();
             foreach (RaycastHit hit in hits)
             {
                 IRaycastable[] raycastables = hit.transform.GetComponents<IRaycastable>();
@@ -64,15 +68,26 @@ namespace RPG.Control
             }
             return false;
         }
+        RaycastHit[] RaycastAllSorted()
+        {
+            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
+            float[] distances = new float[hits.Length];
+            for(int hit = 0; hit < hits.Length; hit++)
+            {
+                distances[hit] = hits[hit].distance;
+            }
+            Array.Sort(distances, hits);
+            return hits;
+        }
         private bool InteractWithMovement()
         {
-            RaycastHit hit;
-            bool hasHit = Physics.Raycast(GetMouseRay(), out hit);
+            Vector3 target;
+            bool hasHit = RaycastNavMesh(out target);
             if (hasHit)
             {
                 if (Input.GetMouseButton(1))
                 {
-                    this.gameObject.GetComponent<Mover>().StartMoveAction(hit.point, 1f);
+                    this.gameObject.GetComponent<Mover>().StartMoveAction(target, 1f);
                     print($"{gameObject.name} is running to point");
                 }
                 SetCursor(CursorType.Movement);
@@ -85,6 +100,35 @@ namespace RPG.Control
             CursorMapping mapping = GetCursorMapping(type);
             Cursor.SetCursor(mapping.texture, mapping.hotspot, CursorMode.Auto);
         }
+        private bool RaycastNavMesh(out Vector3 target)
+        {
+            target = new Vector3();
+            RaycastHit hit;
+            bool hashit = Physics.Raycast(GetMouseRay(), out hit);
+            if (!hashit) return false;
+            NavMeshHit navMeshHit;
+            bool hasCastToNavMesh = NavMesh.SamplePosition(hit.point, out navMeshHit, maxNavmeshProjectionDistance, NavMesh.AllAreas);
+            if (!hasCastToNavMesh) return false;
+            target = navMeshHit.position;
+            NavMeshPath path = new NavMeshPath();
+            bool hasPath = NavMesh.CalculatePath(transform.position, target, NavMesh.AllAreas, path);
+            if(!hasPath) return false;
+            if (path.status != NavMeshPathStatus.PathComplete) return false;
+            if (GetPathLength(path) > maxNavPathLength) return false;
+            return true;
+        }
+
+        private float GetPathLength(NavMeshPath path)
+        {
+            float total = 0;
+            if (path.corners.Length < 2) return total;
+            for(int i = 0; i < path.corners.Length-1; i++)
+            {
+                total += Vector3.Distance(path.corners[i], path.corners[i + 1]);
+            }
+            return total;
+        }
+
         private CursorMapping GetCursorMapping(CursorType type)
         {
             foreach (CursorMapping mapping in cursorMappings)
