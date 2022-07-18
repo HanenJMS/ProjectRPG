@@ -12,7 +12,11 @@ namespace RPG.Attributes
     public class Health : MonoBehaviour, ISaveable
     {
         [SerializeField] float regenerationPercentage = 70;
-        [SerializeField] UnityEvent takeDamage;
+        [SerializeField] TakeDamageEvent takeDamage;
+        [System.Serializable]
+        public class TakeDamageEvent : UnityEvent<float>
+        {
+        }
         LazyValue<float> hp;
         bool isDead = false;
         private void Awake()
@@ -61,7 +65,7 @@ namespace RPG.Attributes
             {
                 hp.value = Mathf.Max(hp.value - damage, 0);
                 print($"{gameObject.name} took damage: {damage}");
-                takeDamage.Invoke();
+                takeDamage.Invoke(damage);
                 if (hp.value <= 0)
                 {
                     Die();

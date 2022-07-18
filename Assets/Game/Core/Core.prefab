@@ -324,6 +324,14 @@ PrefabInstance:
       propertyPath: faction
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 470056595303542286, guid: de8b8ef0e4e3cab4ca9457013d13d3fc, type: 3}
+      propertyPath: startLevel
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 470056595303542286, guid: de8b8ef0e4e3cab4ca9457013d13d3fc, type: 3}
+      propertyPath: characterClass
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 969488369510947309, guid: de8b8ef0e4e3cab4ca9457013d13d3fc, type: 3}
       propertyPath: faction
       value: Player
