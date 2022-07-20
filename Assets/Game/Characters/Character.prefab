@@ -429,6 +429,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: HealthBarImage
       objectReference: {fileID: 0}
+    - target: {fileID: 7427274598127819134, guid: e56f7a5146d6d87409b26e6d54646d49, type: 3}
+      propertyPath: health
+      value: 
+      objectReference: {fileID: 730767419}
+    - target: {fileID: 7427274598127819134, guid: e56f7a5146d6d87409b26e6d54646d49, type: 3}
+      propertyPath: defaultTransform
+      value: 
+      objectReference: {fileID: 4677772240488025150}
     - target: {fileID: 7784343438146611485, guid: e56f7a5146d6d87409b26e6d54646d49, type: 3}
       propertyPath: m_Name
       value: HealthBar

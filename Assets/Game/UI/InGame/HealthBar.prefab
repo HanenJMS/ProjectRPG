@@ -233,7 +233,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &5165802247410007020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,6 +261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3419204936408652653}
   - component: {fileID: 7208194004762508541}
+  - component: {fileID: 7427274598127819134}
   m_Layer: 0
   m_Name: HealthBar
   m_TagString: Untagged
@@ -295,3 +296,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2840931786a91574fb7799ee7f521ee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7427274598127819134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7784343438146611485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fcd503c31d31514a9d8176e93833b7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 2405557361185435007}
+  health: {fileID: 0}
+  defaultImage: {fileID: 8046407438100655921}
