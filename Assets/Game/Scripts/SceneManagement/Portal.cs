@@ -42,7 +42,7 @@ namespace RPG.SceneManagement
             UpdatePlayer(otherPortal);
             savingWrapper.Save();
             yield return new WaitForSeconds(fadeWaitTime);
-            yield return fader.FadeIn(fadeInTime);
+            fader.FadeIn(fadeInTime);
             newPlayer.enabled = true;
             Destroy(gameObject);
         }
