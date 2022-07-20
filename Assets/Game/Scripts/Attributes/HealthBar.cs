@@ -36,6 +36,7 @@ namespace RPG.Attributes
             if (health.GetPercentage() <= 0)
             {
                 gameObject.SetActive(false);
+                return;
             }
         }
         private Vector3 GetHealthSize(float health)
