@@ -3,6 +3,7 @@ using RPG.Core;
 using RPG.Saving;
 using RPG.Stats;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -101,15 +102,19 @@ namespace RPG.Attributes
         //Saving System
         public object CaptureState()
         {
-            return hp;
+            return hp.value;
         }
         public void RestoreState(object state)
         {
             hp.value = (float)state;
-            this.hp.value = hp.value;
             if (hp.value <= 0)
             {
                 Die();
+            }
+            else
+            {
+                isDead = false;
+                GetComponent<Animator>().Play("Locomotion");
             }
         }
     }
