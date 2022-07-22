@@ -1,7 +1,7 @@
 using RPG.Saving;
 using UnityEngine;
 
-namespace RPG.Core
+namespace RPG.Control
 {
     public class CameraController : MonoBehaviour, ISaveable
     {

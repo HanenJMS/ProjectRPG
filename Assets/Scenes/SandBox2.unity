@@ -1324,18 +1324,6 @@ PrefabInstance:
       propertyPath: characterClass
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5244067290870038522, guid: 8db32d10b86f7914ca076b3896a7bd8e, type: 3}
-      propertyPath: cursorMapping.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 5244067290870038522, guid: 8db32d10b86f7914ca076b3896a7bd8e, type: 3}
-      propertyPath: cursorMapping.Array.data[1].type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5244067290870038522, guid: 8db32d10b86f7914ca076b3896a7bd8e, type: 3}
-      propertyPath: cursorMapping.Array.data[2].type
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 6971987991361035933, guid: 8db32d10b86f7914ca076b3896a7bd8e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2107,6 +2095,10 @@ PrefabInstance:
     - target: {fileID: 1112634603047856719, guid: 2b9d2f65f7dfdf7468a6765bc77a9f70, type: 3}
       propertyPath: m_Name
       value: Portal
+      objectReference: {fileID: 0}
+    - target: {fileID: 5849888058396544875, guid: 2b9d2f65f7dfdf7468a6765bc77a9f70, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b9d2f65f7dfdf7468a6765bc77a9f70, type: 3}

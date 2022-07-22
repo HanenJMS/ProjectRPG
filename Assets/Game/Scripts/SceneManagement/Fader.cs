@@ -30,7 +30,7 @@ namespace RPG.SceneManagement
         {
             if (currentActiveFade != null)
             {
-                StopAllCoroutines();
+                StopCoroutine(currentActiveFade);
             }
             currentActiveFade = StartCoroutine(FadeRoutine(target, time));
             return currentActiveFade;

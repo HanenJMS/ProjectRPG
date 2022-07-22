@@ -148,6 +148,7 @@ namespace RPG.Control
         private void OnMouseDown()
         {
             CameraController.instance.followTransform = transform;
+            this.GetComponent<PlayerController>().enabled = true;
         }
     }
 }
