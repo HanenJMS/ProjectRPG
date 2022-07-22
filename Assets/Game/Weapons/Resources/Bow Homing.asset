@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bow Homing
   m_EditorClassIdentifier: 
   animatorOverride: {fileID: 22100000, guid: ab4ef5c3e3263cf4786e449447389334, type: 2}
-  equippedPrefab: {fileID: 7007012874860661227, guid: eb168a3bb34e9c24e96b10aa4c131417, type: 3}
+  equippedPrefab: {fileID: 7400553604342507406, guid: eb168a3bb34e9c24e96b10aa4c131417, type: 3}
   weaponRange: 20
   weaponDamage: 5
   weaponPercentageBonus: 0

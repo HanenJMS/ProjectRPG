@@ -27,7 +27,6 @@ namespace RPG.SceneManagement
         }
         private IEnumerator Transition()
         {
-            SavingWrapper savingWrapper = FindObjectOfType<SavingWrapper>();
             if (sceneToLoad < 0)
             {
                 Debug.LogError("Scene to load not set.");

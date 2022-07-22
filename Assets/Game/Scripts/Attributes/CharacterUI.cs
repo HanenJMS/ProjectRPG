@@ -1,14 +1,11 @@
-using RPG.Attributes;
 using RPG.Core;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Attributes
 {
     public class CharacterUI : MonoBehaviour, ICharacterUI
     {
-        Camera camera;
+        private new Camera camera;
         Canvas canvas;
         private void Start()
         {

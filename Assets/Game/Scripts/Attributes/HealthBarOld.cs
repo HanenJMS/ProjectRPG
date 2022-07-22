@@ -9,7 +9,7 @@ namespace RPG.Attributes
         float maxWidthScale = 0.1f;
         Health health;
         Color defaultColor;
-        Camera camera;
+        new Camera camera;
         private void Awake()
         {
             healthBar = GetComponent<Transform>();
