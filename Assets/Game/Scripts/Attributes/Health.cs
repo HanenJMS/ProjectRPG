@@ -76,6 +76,10 @@ namespace RPG.Attributes
                 }
             }
         }
+        public void Heal(float healthToRestore)
+        {
+            hp.value = Mathf.Min(hp.value + healthToRestore, GetLevelMaxHealth());
+        }
         private void AwardExperience(GameObject instigator)
         {
             Experience exp = instigator.GetComponent<Experience>();
